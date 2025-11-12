@@ -36,6 +36,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/eya.gharbi.github.io/",
               "budgets": [
                 {
                   "type": "initial",
