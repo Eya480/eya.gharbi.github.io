@@ -1,0 +1,111 @@
+<section id="about" class="about-section section-padding">
+  <div class="container">
+    <!-- En-tête de section -->
+    <header class="section-header text-center mb-5">
+      <h2 class="section-title">À Propos de Moi</h2>
+      <p class="section-subtitle">Découvrez mon parcours et ma passion pour le développement</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <!-- Contenu principal -->
+    <div class="row align-items-center mb-5">
+      <!-- Colonne texte -->
+      <div class="col-lg-6">
+        <article class="about-content">
+          <h3 class="about-greeting">Bonjour ! Je suis <span class="text-primary">Eya GHARBI</span></h3>
+          <p class="about-description">
+            Développeuse Full Stack passionnée avec une expertise en Java, Spring Boot, Angular, Python et Android. 
+            Je développe des applications web modernes, performantes et évolutives. Actuellement en recherche d'opportunités 
+            pour intégrer une équipe dynamique où je pourrai participer au cycle de développement complet d'applications.
+          </p>
+          
+          <!-- Points forts -->
+          <ul class="about-highlights list-unstyled">
+            <li class="highlight-item">
+              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+              <span>Développement full-stack d'applications web et mobiles</span>
+            </li>
+            <li class="highlight-item">
+              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+              <span>Création d'API RESTful et interfaces responsives</span>
+            </li>
+            <li class="highlight-item">
+              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+              <span>Modélisation et gestion de bases de données</span>
+            </li>
+            <li class="highlight-item">
+              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+              <span>Sécurisation des applications avec JWT et OAuth2</span>
+            </li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="about-actions mt-4">
+            <button class="btn btn-primary me-3" (click)="scrollTo('contact')" aria-label="Me contacter">
+              <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>
+              Me Contacter
+            </button>
+            <a href="assets/cv.pdf" download class="btn btn-outline-primary" aria-label="Télécharger mon CV">
+              <i class="fas fa-download me-2" aria-hidden="true"></i>
+              Télécharger CV
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Colonne image -->
+      <div class="col-lg-6">
+        <figure class="about-image text-center">
+          <img 
+            src="assets/profile.png" 
+            alt="Eya EL GHARBI - Développeuse Full Stack"
+            class="img-fluid rounded-circle profile-image"
+            width="400" 
+            height="400"
+            loading="lazy">
+        </figure>
+      </div>
+    </div>
+
+    <!-- Statistiques -->
+    <section class="stats-section mb-5" aria-labelledby="stats-heading">
+      <h3 id="stats-heading" class="sr-only">Mes statistiques</h3>
+      <div class="row g-4">
+        @for (stat of stats; track stat.label) {
+          <div class="col-xl-3 col-md-6">
+            <article class="stat-card text-center">
+              <i [class]="stat.icon + ' stat-icon'" aria-hidden="true"></i>
+              <h4 class="stat-value">{{ stat.value }}</h4>
+              <p class="stat-label">{{ stat.label }}</p>
+            </article>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Parcours -->
+    <section class="timeline-section" aria-labelledby="timeline-heading">
+      <h3 id="timeline-heading" class="text-center mb-5">Mon Parcours</h3>
+      <div class="timeline">
+        @for (exp of experiences; track exp.id) {
+          <article class="timeline-item">          
+            <div class="timeline-content">
+              <header class="timeline-header">
+                <h4 class="timeline-title">{{ exp.title }}</h4>
+                <time class="timeline-period">{{ exp.period }}</time>
+              </header>
+              <h5 class="timeline-company">{{ exp.company }}</h5>
+              <p class="timeline-description">{{ exp.description }}</p>
+              
+              <div class="timeline-technologies">
+                @for (tech of exp.technologies; track tech) {
+                  <span class="tech-tag small">{{ tech }}</span>
+                }
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </section>
+  </div>
+</section>

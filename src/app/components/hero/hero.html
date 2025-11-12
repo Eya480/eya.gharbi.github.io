@@ -1,0 +1,133 @@
+<section id="home" class="hero-section">
+  <!-- Background avec particules -->
+  <div class="hero-background">
+    <div class="particles-container">
+      @for (particle of [1,2,3,4,5,6,7,8,9,10]; track particle) {
+      <div class="particle"></div>
+      }
+    </div>
+    <div class="gradient-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <!-- Contenu texte -->
+      <div class="col-lg-6" [class.fade-in]="showContent">
+        <div class="hero-content">
+          <!-- Badge de statut -->
+          <div class="status-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">Disponible pour de nouvelles opportunités</span>
+          </div>
+
+          <!-- Titre principal -->
+          <h1 class="hero-title">
+            Bonjour, je suis
+            <span class="text-highlight">Eya GHARBI</span>
+          </h1>
+
+          <!-- Sous-titre animé -->
+          <div class="hero-subtitle">
+            <span class="typed-text">{{ typedText }}</span>
+            <span class="cursor">|</span>
+          </div>
+
+          <!-- Description -->
+          <p class="hero-description">Développeuse Full Stack passionnée par les technologies innovantes</p>
+
+          <!-- Statistiques -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Projets réalisés</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">12+</span>
+              <span class="stat-label">Technologies maîtrisées</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2</span>
+              <span class="stat-label">Stages professionnels</span>
+            </div>
+          </div>
+
+          <!-- Boutons d'action -->
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg me-3" (click)="scrollTo('projects')">
+              <span class="btn-content">
+                <i class="fas fa-rocket me-2"></i>
+                Voir mes projets
+              </span>
+              <div class="btn-hover-effect"></div>
+            </button>
+
+            <button class="btn btn-outline-light btn-lg" (click)="scrollTo('contact')">
+              <span class="btn-content">
+                <i class="fas fa-paper-plane me-2"></i>
+                Me contacter
+              </span>
+              <div class="btn-hover-effect"></div>
+            </button>
+          </div>
+
+          <!-- Réseaux sociaux -->
+          <div class="hero-social">
+            <span class="social-label">Suivez-moi :</span>
+            <div class="social-links">
+              <a href="https://github.com/Eya480" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/eyaelgharbi/"
+                target="_blank"
+                class="social-link"
+              >
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="mailto:eyaelgharbi889@gmail.com" class="social-link">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image de profil -->
+      <div class="col-lg-6 text-center" [class.fade-in]="showContent">
+        <div class="hero-image-container">
+          <div class="image-wrapper" [class.loaded]="imageLoaded">
+            <img
+              src="assets/profile.png"
+              alt="Eya EL GHARBI - Développeuse Full Stack"
+              class="hero-image"
+              (load)="onImageLoad()"
+              loading="eager"
+            />
+
+            <!-- Badge flottant technologies -->
+            <div class="tech-badge spring-badge">
+              <i class="fas fa-leaf"></i>
+              <span>Spring Boot</span>
+            </div>
+            <div class="tech-badge angular-badge">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+            </div>
+            <div class="tech-badge java-badge">
+              <i class="fab fa-java"></i>
+              <span>Java</span>
+            </div>
+            <div class="tech-badge python-badge">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+            </div>
+            <div class="tech-badge a">
+              <i class="fab fa-android"></i>
+              <span>Android</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

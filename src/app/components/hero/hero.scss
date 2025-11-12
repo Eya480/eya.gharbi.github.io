@@ -1,0 +1,623 @@
+// Variables
+$primary-color: #2c3e50;
+$secondary-color: #3498db;
+$accent-color: #9b59b6;
+$white: #ffffff;
+$light-bg: #f8f9fa;
+$dark-color: #2c3e50;
+$text-muted: #6c757d;
+$success-color: #3ffa8d;
+$gradient-start: #374eb8;
+$gradient-end: #764ba2;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+// Styles de la section hero
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  max-height: 100vh;
+  background: rgb(23, 23, 70);
+  overflow: hidden;
+  color: $white;
+  display: flex;
+  align-items: center;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  background: rgba($white, 0.1);
+  border-radius: 50%;
+  
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i}) {
+      $size: random(20) + 5px;
+      width: $size;
+      height: $size;
+      top: random(100) * 1%;
+      left: random(100) * 1%;
+    }
+  }
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba($gradient-start, 0.8) 0%,
+    rgba($gradient-end, 0.6) 100%
+  );
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  padding: 2rem 0;
+}
+
+// Contenu principal
+.hero-content {
+  padding: 1rem 0;
+  
+  &.fade-in {
+    animation: fadeInUp 0.8s ease-out;
+  }
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba($white, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 1.5rem;
+  
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: $success-color;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+    animation: blink 2s infinite;
+  }
+  
+  .badge-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  
+  .text-highlight {
+    background: linear-gradient(45deg, $white, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  min-height: 1.8rem;
+  
+  .typed-text {
+    font-weight: 300;
+    color: rgba($white, 0.9);
+  }
+  
+  .cursor {
+    color: $secondary-color;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+}
+
+.hero-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  color: rgba($white, 0.8);
+  
+  strong {
+    color: $white;
+    font-weight: 600;
+  }
+}
+
+// Statistiques compactes
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  
+  .stat-item {
+    text-align: center;
+    
+    .stat-number {
+      display: block;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $white;
+      margin-bottom: 0.2rem;
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba($white, 0.7);
+    }
+  }
+}
+
+// Boutons d'action compacts
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  
+  .btn {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    .btn-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+    
+    &.btn-primary {
+      background: linear-gradient(45deg, $secondary-color, $accent-color);
+      color: $white;
+    }
+    
+    &.btn-outline-light {
+      background: transparent;
+      border: 2px solid rgba($white, 0.3);
+      color: $white;
+      
+      &:hover {
+        background: rgba($white, 0.1);
+        border-color: $white;
+      }
+    }
+  }
+}
+
+// Réseaux sociaux compacts
+.hero-social {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  
+  .social-label {
+    font-size: 0.8rem;
+    color: rgba($white, 0.7);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .social-link {
+    @include flex-center;
+    width: 32px;
+    height: 32px;
+    background: rgba($white, 0.1);
+    border-radius: 50%;
+    color: $white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: $white;
+      color: $primary-color;
+      transform: translateY(-2px);
+    }
+    
+    i {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Container de l'image compact
+.hero-image-container {
+  position: relative;
+  padding: 1rem;
+  
+  &.fade-in {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  max-width: 300px;
+  margin: 0 auto;
+  
+  &.loaded {
+    .hero-image {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.6s ease;
+  position: relative;
+  z-index: 2;
+}
+
+// Badges de technologies compacts
+.tech-badge {
+  position: absolute;
+  background: rgba($white, 0.95);
+  border-radius: 15px;
+  padding: 0.3rem 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: $dark-color;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  
+  i {
+    font-size: 0.8rem;
+  }
+  
+  &.spring-badge {
+    top: 1%;
+    left: 5%;
+    i { color: #6db33f; }
+  }
+  
+  &.angular-badge {
+    top: 10%;
+    right: 3%;
+    i { color: #dd0031; }
+  }
+  
+  &.java-badge {
+    bottom: 5%;
+    left: 3%;
+    i { color: #007396; }
+  }
+  
+  &.python-badge {
+    bottom:1%;
+    right: 5%;
+    i { color: #3776ab; }
+  }
+}
+
+// Carte d'expérience compacte
+.experience-card {
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
+  background: linear-gradient(45deg, $secondary-color, $accent-color);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 4;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  
+  .card-content {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  .card-icon {
+    font-size: 1.2rem;
+    color: $white;
+  }
+  
+  .card-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $white;
+  }
+  
+  .card-label {
+    font-size: 0.7rem;
+    color: rgba($white, 0.8);
+  }
+}
+
+// Indicateur de scroll
+.scroll-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba($white, 0.7);
+  z-index: 2;
+  
+  .scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba($white, 0.3);
+    border-radius: 50%;
+    @include flex-center;
+    margin: 0 auto 0.3rem;
+    animation: bounce 2s infinite;
+    
+    i {
+      font-size: 0.8rem;
+    }
+  }
+  
+  .scroll-text {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+// Responsive pour écrans très petits
+@media (max-width: 992px) {
+  .hero-section {
+    min-height: 100vh;
+    max-height: none;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-stats {
+    gap: 1rem;
+    
+    .stat-item .stat-number {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem 0;
+    min-height: 100vh;
+  }
+  
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .hero-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .hero-description {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  
+  .status-badge {
+    align-self: center;
+  }
+  
+  .hero-stats {
+    justify-content: center;
+    gap: 1rem;
+    
+    .stat-item {
+      .stat-number {
+        font-size: 1rem;
+      }
+      .stat-label {
+        font-size: 0.7rem;
+      }
+    }
+  }
+  
+  .hero-actions {
+    justify-content: center;
+    
+    .btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.8rem;
+    }
+  }
+  
+  .hero-social {
+    justify-content: center;
+  }
+  
+  .hero-image-container {
+    padding: 0.5rem;
+  }
+  
+  .image-wrapper {
+    max-width: 250px;
+  }
+  
+  .tech-badge {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+    
+    span {
+      display: none;
+    }
+  }
+  
+  .experience-card {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 1rem;
+    max-width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .card-value {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-stats {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+    
+    .btn {
+      width: 200px;
+    }
+  }
+  
+  .particle {
+    display: none;
+  }
+  
+  .scroll-indicator {
+    bottom: 0.5rem;
+    
+    .scroll-arrow {
+      width: 25px;
+      height: 25px;
+    }
+    
+    .scroll-text {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+// Pour les écrans très hauts
+@media (min-height: 900px) {
+  .hero-section {
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+}
+
+// Pour les écrans très petits en hauteur
+@media (max-height: 600px) {
+  .hero-section {
+    min-height: 600px;
+    max-height: 600px;
+  }
+  
+  .container {
+    padding: 1rem 0;
+  }
+  
+  .hero-stats,
+  .hero-social {
+    display: none;
+  }
+  
+  .hero-actions {
+    margin-bottom: 1rem;
+  }
+}
