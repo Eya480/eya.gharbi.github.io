@@ -5,8 +5,8 @@ import { Router, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.html',
-  imports:[CommonModule, RouterLink],
-  styleUrls: ['./hero.scss']
+  imports: [CommonModule, RouterLink],
+  styleUrls: ['./hero.scss'],
 })
 export class Hero implements OnInit {
   title = 'Développeuse Full Stack';
@@ -14,6 +14,9 @@ export class Hero implements OnInit {
   typedText = '';
   private phrases = [
     'À la recherche de nouveaux défis professionnels',
+    "En recherche active d'un stage de fin d'études",
+    'Développeur full-stack motivé pour un stage PFE',
+    "Étudiant en informatique cherche stage de fin d'études",
   ];
   private currentPhraseIndex = 0;
   private currentCharIndex = 0;

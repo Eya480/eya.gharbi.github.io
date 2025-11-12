@@ -11,13 +11,20 @@
     <div class="row justify-content-center mb-5">
       <div class="col-lg-10 col-xl-8">
         <article class="about-content text-center">
-          <h3 class="about-greeting">Bonjour ! Je suis <span class="text-primary">Eya GHARBI</span></h3>
+          <h3 class="about-greeting">
+            Bonjour ! Je suis <span class="text-primary">Eya GHARBI</span>
+          </h3>
           <p class="about-description">
-            Développeuse Full Stack passionnée avec une expertise en Java, Spring Boot, Angular, Python et Android. 
-            Je conçois et développe des applications web modernes, performantes et évolutives. Actuellement en recherche d'opportunités 
-            pour intégrer une équipe dynamique où je pourrai participer au cycle de développement complet d'applications.
+            Développeuse Full Stack passionnée, experte en <strong>Java/Spring Boot</strong> côté
+            backend et <strong>Angular</strong> côté frontend. Je maîtrise également
+            <strong>Python</strong> et le développement <strong>Android</strong> pour des solutions
+            mobiles.
           </p>
-          
+          <p class="about-description">
+            Actuellement en recherche d'un <strong>stage PFE</strong>, je souhaite intégrer une
+            équipe dynamique pour participer au cycle complet de développement d'applications web et
+            mobiles innovantes, et apporter ma passion pour les technologies modernes.
+          </p>
           <!-- Points forts -->
           <div class="row justify-content-center mt-4">
             <div class="col-lg-8">
@@ -48,7 +55,12 @@
               <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>
               Me Contacter
             </button>
-            <a href="assets/cv.pdf" download class="btn btn-outline-primary" aria-label="Télécharger mon CV">
+            <a
+              href="assets/cv.pdf"
+              download
+              class="btn btn-outline-primary"
+              aria-label="Télécharger mon CV"
+            >
               <i class="fas fa-download me-2" aria-hidden="true"></i>
               Télécharger CV
             </a>
@@ -62,13 +74,13 @@
       <h3 id="stats-heading" class="sr-only">Mes statistiques</h3>
       <div class="row g-4 justify-content-center">
         @for (stat of stats; track stat.label) {
-          <div class="col-xl-3 col-md-6">
-            <article class="stat-card text-center">
-              <i [class]="stat.icon + ' stat-icon'" aria-hidden="true"></i>
-              <h4 class="stat-value">{{ stat.value }}</h4>
-              <p class="stat-label">{{ stat.label }}</p>
-            </article>
-          </div>
+        <div class="col-xl-3 col-md-6">
+          <article class="stat-card text-center">
+            <i [class]="stat.icon + ' stat-icon'" aria-hidden="true"></i>
+            <h4 class="stat-value">{{ stat.value }}</h4>
+            <p class="stat-label">{{ stat.label }}</p>
+          </article>
+        </div>
         }
       </div>
     </section>
@@ -78,22 +90,22 @@
       <h3 id="timeline-heading" class="text-center mb-5">Mon Parcours</h3>
       <div class="timeline">
         @for (exp of experiences; track exp.id) {
-          <article class="timeline-item">          
-            <div class="timeline-content">
-              <header class="timeline-header">
-                <h4 class="timeline-title">{{ exp.title }}</h4>
-                <time class="timeline-period">{{ exp.period }}</time>
-              </header>
-              <h5 class="timeline-company">{{ exp.company }}</h5>
-              <p class="timeline-description">{{ exp.description }}</p>
-              
-              <div class="timeline-technologies">
-                @for (tech of exp.technologies; track tech) {
-                  <span class="tech-tag small">{{ tech }}</span>
-                }
-              </div>
+        <article class="timeline-item">
+          <div class="timeline-content">
+            <header class="timeline-header">
+              <h4 class="timeline-title">{{ exp.title }}</h4>
+              <time class="timeline-period">{{ exp.period }}</time>
+            </header>
+            <h5 class="timeline-company">{{ exp.company }}</h5>
+            <p class="timeline-description">{{ exp.description }}</p>
+
+            <div class="timeline-technologies">
+              @for (tech of exp.technologies; track tech) {
+              <span class="tech-tag small">{{ tech }}</span>
+              }
             </div>
-          </article>
+          </div>
+        </article>
         }
       </div>
     </section>
