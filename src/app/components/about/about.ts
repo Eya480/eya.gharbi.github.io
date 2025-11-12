@@ -25,8 +25,8 @@ interface Stat {
 })
 export class About implements OnInit {
   stats: Stat[] = [
-    { icon: 'fas fa-project-diagram', value: '10+', label: 'Projets Réalisés' },
-    { icon: 'fas fa-code', value: '8+', label: 'Technologies Maîtrisées' },
+    { icon: 'fas fa-project-diagram', value: '7+', label: 'Projets Réalisés' },
+    { icon: 'fas fa-code', value: '10+', label: 'Technologies Dominées' },
     { icon: 'fas fa-graduation-cap', value: '2', label: 'Diplômes' },
     { icon: 'fas fa-certificate', value: '3+', label: 'Certifications' }
   ];

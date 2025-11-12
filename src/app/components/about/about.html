@@ -7,37 +7,40 @@
       <div class="section-divider"></div>
     </header>
 
-    <!-- Contenu principal -->
-    <div class="row align-items-center mb-5">
-      <!-- Colonne texte -->
-      <div class="col-lg-6">
-        <article class="about-content">
+    <!-- Contenu principal - Centré sans photo -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-10 col-xl-8">
+        <article class="about-content text-center">
           <h3 class="about-greeting">Bonjour ! Je suis <span class="text-primary">Eya GHARBI</span></h3>
           <p class="about-description">
             Développeuse Full Stack passionnée avec une expertise en Java, Spring Boot, Angular, Python et Android. 
-            Je développe des applications web modernes, performantes et évolutives. Actuellement en recherche d'opportunités 
+            Je conçois et développe des applications web modernes, performantes et évolutives. Actuellement en recherche d'opportunités 
             pour intégrer une équipe dynamique où je pourrai participer au cycle de développement complet d'applications.
           </p>
           
           <!-- Points forts -->
-          <ul class="about-highlights list-unstyled">
-            <li class="highlight-item">
-              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
-              <span>Développement full-stack d'applications web et mobiles</span>
-            </li>
-            <li class="highlight-item">
-              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
-              <span>Création d'API RESTful et interfaces responsives</span>
-            </li>
-            <li class="highlight-item">
-              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
-              <span>Modélisation et gestion de bases de données</span>
-            </li>
-            <li class="highlight-item">
-              <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
-              <span>Sécurisation des applications avec JWT et OAuth2</span>
-            </li>
-          </ul>
+          <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+              <ul class="about-highlights list-unstyled">
+                <li class="highlight-item">
+                  <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+                  <span>Développement full-stack d'applications web et mobiles</span>
+                </li>
+                <li class="highlight-item">
+                  <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+                  <span>Création d'API RESTful et interfaces responsives</span>
+                </li>
+                <li class="highlight-item">
+                  <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+                  <span>Modélisation et gestion de bases de données</span>
+                </li>
+                <li class="highlight-item">
+                  <i class="fas fa-check text-success me-2" aria-hidden="true"></i>
+                  <span>Sécurisation des applications avec JWT et OAuth2</span>
+                </li>
+              </ul>
+            </div>
+          </div>
 
           <!-- Actions -->
           <div class="about-actions mt-4">
@@ -52,25 +55,12 @@
           </div>
         </article>
       </div>
-
-      <!-- Colonne image -->
-      <div class="col-lg-6">
-        <figure class="about-image text-center">
-          <img 
-            src="assets/profile.png" 
-            alt="Eya EL GHARBI - Développeuse Full Stack"
-            class="img-fluid rounded-circle profile-image"
-            width="400" 
-            height="400"
-            loading="lazy">
-        </figure>
-      </div>
     </div>
 
     <!-- Statistiques -->
     <section class="stats-section mb-5" aria-labelledby="stats-heading">
       <h3 id="stats-heading" class="sr-only">Mes statistiques</h3>
-      <div class="row g-4">
+      <div class="row g-4 justify-content-center">
         @for (stat of stats; track stat.label) {
           <div class="col-xl-3 col-md-6">
             <article class="stat-card text-center">

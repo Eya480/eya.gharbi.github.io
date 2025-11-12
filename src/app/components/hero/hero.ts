@@ -13,11 +13,7 @@ export class Hero implements OnInit {
   subtitle = 'Passionnée par les technologies modernes et innovantes';
   typedText = '';
   private phrases = [
-    'Développeuse Full Stack',
-    'Spécialiste Spring Boot & Angular',
-    'Passionnée par l\'innovation technologique',
     'À la recherche de nouveaux défis professionnels',
-    'Expert en développement web & mobile'
   ];
   private currentPhraseIndex = 0;
   private currentCharIndex = 0;

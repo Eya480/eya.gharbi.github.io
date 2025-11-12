@@ -9,25 +9,6 @@ $text-muted: #6c757d;
 $success-color: #27ae60;
 $border-color: #e9ecef;
 
-// Mixins
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin card-shadow {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-@mixin hover-lift {
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-}
-
 // Section About
 .about-section {
   background: $white;
@@ -63,12 +44,10 @@ $border-color: #e9ecef;
   }
 }
 
-// Contenu principal
+// Contenu principal - Centré
 .about-content {
-  padding-right: 2rem;
-
   .about-greeting {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: $dark-color;
     margin-bottom: 1.5rem;
@@ -83,7 +62,7 @@ $border-color: #e9ecef;
   }
 
   .about-description {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.7;
     color: $text-muted;
     margin-bottom: 2rem;
@@ -99,9 +78,11 @@ $border-color: #e9ecef;
     margin-bottom: 0.75rem;
     font-size: 1rem;
     color: $dark-color;
+    justify-content: flex-start;
 
     i {
       font-size: 0.9rem;
+      flex-shrink: 0;
     }
   }
 }
@@ -110,6 +91,7 @@ $border-color: #e9ecef;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 
   .btn {
     border-radius: 25px;
@@ -142,25 +124,6 @@ $border-color: #e9ecef;
   }
 }
 
-// Image de profil
-.about-image {
-  position: relative;
-  
-  .profile-image {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border: 5px solid $white;
-    @include card-shadow;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    }
-  }
-}
-
 // Section Statistiques
 .stats-section {
   margin: 4rem 0;
@@ -169,9 +132,14 @@ $border-color: #e9ecef;
     background: $white;
     border-radius: 15px;
     padding: 2rem 1rem;
-    @include card-shadow;
-    @include hover-lift;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     border: 1px solid $border-color;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
 
     .stat-icon {
       font-size: 2.5rem;
@@ -229,57 +197,22 @@ $border-color: #e9ecef;
 
 .timeline-item {
   margin-bottom: 3rem;
-}
-
-.timeline-marker {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  background: $white;
-  border: 3px solid $primary-color;
-  border-radius: 50%;
-  @include flex-center;
-  z-index: 2;
-  @include card-shadow;
-
-  i {
-    font-size: 1.2rem;
-    color: $primary-color;
-  }
+  position: relative;
 }
 
 .timeline-content {
-  flex: 1;
   background: $white;
   border-radius: 15px;
   padding: 2rem;
-  @include card-shadow;
-  @include hover-lift;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   border: 1px solid $border-color;
   position: relative;
+  margin: 0 2rem;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 20px;
-    width: 20px;
-    height: 20px;
-    background: $white;
-    transform: rotate(45deg);
-  }
-
-  .timeline-item:nth-child(odd) &::before {
-    right: -10px;
-    border-right: 1px solid $border-color;
-    border-top: 1px solid $border-color;
-  }
-
-  .timeline-item:nth-child(even) &::before {
-    left: -10px;
-    border-left: 1px solid $border-color;
-    border-bottom: 1px solid $border-color;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -342,49 +275,7 @@ $border-color: #e9ecef;
   }
 }
 
-// Variantes des éléments de timeline
-.timeline-item-work {
-  .timeline-marker {
-    border-color: $secondary-color;
-    background: linear-gradient(45deg, $secondary-color, lighten($secondary-color, 20%));
-    
-    i {
-      color: $white;
-    }
-  }
-}
-
-.timeline-item-education {
-  .timeline-marker {
-    border-color: $accent-color;
-    background: linear-gradient(45deg, $accent-color, lighten($accent-color, 20%));
-    
-    i {
-      color: $white;
-    }
-  }
-}
-
 // Responsive
-@media (max-width: 992px) {
-  .about-section.section-padding {
-    padding: 4rem 0;
-  }
-
-  .about-content {
-    padding-right: 0;
-    margin-bottom: 3rem;
-  }
-
-  .about-greeting {
-    font-size: 1.8rem !important;
-  }
-
-  .stats-section {
-    margin: 3rem 0;
-  }
-}
-
 @media (max-width: 768px) {
   .about-section.section-padding {
     padding: 3rem 0;
@@ -395,61 +286,33 @@ $border-color: #e9ecef;
   }
 
   .about-greeting {
-    font-size: 1.6rem !important;
-    text-align: center;
+    font-size: 1.8rem !important;
   }
 
   .about-description {
-    text-align: center;
-  }
-
-  .about-highlights {
-    text-align: center;
-    
-    .highlight-item {
-      justify-content: center;
-    }
+    font-size: 1rem !important;
   }
 
   .about-actions {
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+    .btn {
+      width: 100%;
+      max-width: 250px;
+      margin: 0.25rem 0;
+    }
   }
 
   .timeline {
     &::before {
-      left: 30px;
+      left: 20px;
     }
   }
 
-  .timeline-item {
-    flex-direction: row !important;
-    margin-left: 60px;
-
-    .timeline-content {
-      margin-left: 2rem !important;
-      margin-right: 0 !important;
-      text-align: left !important;
-
-      &::before {
-        left: -10px !important;
-        right: auto !important;
-        border-left: 1px solid $border-color;
-        border-bottom: 1px solid $border-color;
-        border-right: none;
-        border-top: none;
-      }
-    }
-  }
-
-  .timeline-marker {
-    left: 0;
-    transform: none;
-    width: 50px;
-    height: 50px;
-    
-    i {
-      font-size: 1rem;
-    }
+  .timeline-content {
+    margin-left: 3rem !important;
+    margin-right: 1rem !important;
   }
 
   .timeline-header {
@@ -459,35 +322,7 @@ $border-color: #e9ecef;
   }
 }
 
-@media (max-width: 576px) {
-  .about-actions {
-    flex-direction: column;
-    align-items: center;
-    
-    .btn {
-      width: 100%;
-      max-width: 250px;
-    }
-  }
-
-  .stat-card {
-    padding: 1.5rem 0.5rem !important;
-
-    .stat-value {
-      font-size: 2rem !important;
-    }
-  }
-
-  .timeline-content {
-    padding: 1.5rem !important;
-  }
-
-  .profile-image {
-    max-width: 300px !important;
-  }
-}
-
-// Animation d'apparition
+// Animations
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -500,7 +335,6 @@ $border-color: #e9ecef;
 }
 
 .about-content,
-.about-image,
 .stat-card,
 .timeline-item {
   animation: fadeInUp 0.6s ease-out;

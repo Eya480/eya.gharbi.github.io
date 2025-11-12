@@ -9,33 +9,33 @@ import { Project } from '../models/project';
 export class Portfolio {
   private skills: Skill[] = [
     // Frontend
-    { id: 1, name: 'Angular', level: 85, category: 'frontend', icon: 'fab fa-angular', yearsOfExperience: 2 },
-    { id: 2, name: 'TypeScript', level: 80, category: 'frontend', icon: 'fab fa-js-square', yearsOfExperience: 2 },
-    { id: 3, name: 'HTML/CSS', level: 90, category: 'frontend', icon: 'fab fa-html5', yearsOfExperience: 5 },
-    { id: 4, name: 'JavaScript', level: 85, category: 'frontend', icon: 'fab fa-js', yearsOfExperience: 5 },
-    { id: 5, name: 'Bootstrap', level: 85, category: 'frontend', icon: 'fab fa-bootstrap', yearsOfExperience: 2 },
+    { id: 1, name: 'Angular', level: 90, category: 'frontend', icon: 'fab fa-angular', yearsOfExperience: 2 },
+    { id: 2, name: 'TypeScript', level: 85, category: 'frontend', icon: 'fab fa-js-square', yearsOfExperience: 2 },
+    { id: 3, name: 'HTML/CSS', level: 95, category: 'frontend', icon: 'fab fa-html5', yearsOfExperience: 5 },
+    { id: 4, name: 'JavaScript', level: 95, category: 'frontend', icon: 'fab fa-js', yearsOfExperience: 5 },
+    { id: 5, name: 'Bootstrap', level: 90, category: 'frontend', icon: 'fab fa-bootstrap', yearsOfExperience: 2 },
     
     // Backend
     { id: 6, name: 'Spring Boot', level: 80, category: 'backend', icon: 'fas fa-leaf', yearsOfExperience: 2 },
     { id: 7, name: 'Java', level: 90, category: 'backend', icon: 'fab fa-java', yearsOfExperience: 2 },
-    { id: 8, name: 'Node.js', level: 80, category: 'backend', icon: 'fab fa-node-js', yearsOfExperience: 2 },
-    { id: 9, name: 'PHP', level: 90, category: 'backend', icon: 'fab fa-php', yearsOfExperience: 2 },
-    { id: 10, name: 'Symfony', level: 90, category: 'backend', icon: 'fab fa-symfony', yearsOfExperience: 1 },
+    { id: 8, name: 'Node.js', level: 90, category: 'backend', icon: 'fab fa-node-js', yearsOfExperience: 2 },
+    { id: 9, name: 'PHP', level: 95, category: 'backend', icon: 'fab fa-php', yearsOfExperience: 2 },
+    { id: 10, name: 'Symfony', level: 95, category: 'backend', icon: 'fab fa-symfony', yearsOfExperience: 1 },
     { id: 11, name: 'Python', level: 80, category: 'backend', icon: 'fab fa-python', yearsOfExperience: 2 },
     
     // Database
-    { id: 12, name: 'MySQL', level: 80, category: 'database', icon: 'fas fa-database', yearsOfExperience: 2 },
+    { id: 12, name: 'MySQL', level: 95, category: 'database', icon: 'fas fa-database', yearsOfExperience: 2 },
     { id: 13, name: 'MongoDB', level: 70, category: 'database', icon: 'fas fa-database', yearsOfExperience: 1 },
-    { id: 14, name: 'Oracle', level: 80, category: 'database', icon: 'fas fa-database', yearsOfExperience: 4 },
+    { id: 14, name: 'Oracle', level: 95, category: 'database', icon: 'fas fa-database', yearsOfExperience: 4 },
     { id: 15, name: 'SQL Server', level: 80, category: 'database', icon: 'fas fa-database', yearsOfExperience: 2 },
     
     // Mobile
     { id: 16, name: 'React Native', level: 50, category: 'mobile', icon: 'fab fa-react', yearsOfExperience: 1 },
-    { id: 17, name: 'Kotlin', level: 80, category: 'mobile', icon: 'fas fa-mobile-alt', yearsOfExperience: 1 },
+    { id: 17, name: 'Kotlin', level: 60, category: 'mobile', icon: 'fas fa-mobile-alt', yearsOfExperience: 1 },
     
     // Tools
-    { id: 18, name: 'Git', level: 80, category: 'tools', icon: 'fab fa-git-alt', yearsOfExperience: 4 },
-    { id: 20, name: 'Postman', level: 85, category: 'tools', icon: 'fas fa-api', yearsOfExperience: 2 }
+    { id: 18, name: 'Git', level: 90, category: 'tools', icon: 'fab fa-git-alt', yearsOfExperience: 4 },
+    { id: 20, name: 'Postman', level: 95, category: 'tools', icon: 'fas fa-api', yearsOfExperience: 2 }
   ];
 
   private projects: Project[] = [
@@ -57,7 +57,7 @@ export class Portfolio {
     {
       id: 2,
     title: 'Gestion de Projets Scolaires - Mobile',
-    description: 'Application mobile de gestion des projets pédagogiques ISET Radès',
+    description: 'Application mobile de gestion des projets pédagogiques',
     detailedDescription: 'Application mobile dédiée à la gestion des projets pédagogiques. Fonctionnalités mobiles : notifications push, consultation hors ligne, dépôt de photos, géolocalisation pour les projets terrain.',
     imageUrl: 'assets/gestionPMobile.png',
     technologies: ['Android', 'Angular', 'TypeScript', 'Kotlib', 'MongoDB'],
@@ -72,7 +72,7 @@ export class Portfolio {
     {
       id: 3,
     title: 'Gestion de Projets Scolaires - Web',
-    description: 'Plateforme web de gestion des projets pédagogiques ISET Radès',
+    description: 'Plateforme web de gestion des projets pédagogiques',
     detailedDescription: 'Application web complète pour la gestion administrative des projets. Interface d\'administration avancée, génération de rapports PDF, gestion des utilisateurs, tableau de bord analytique.',
     imageUrl: 'assets/gestionPWeb.png',
     technologies: ['Spring Boot', 'Angular', 'MongoDB', 'TypeScript', 'Bootstrap', 'Chart.js'],
@@ -128,21 +128,6 @@ export class Portfolio {
       featured: false,
       startDate: new Date('2025-04-01'),
       endDate: new Date('2025-05-14'),
-      status: 'completed'
-    },
-    {
-      id: 7,
-      title: 'Application Mobile React Native',
-      description: 'Application cross-platform de profil utilisateur',
-      detailedDescription: 'Première application mobile cross-platform développée avec React Native. Gestion de profil utilisateur avec photo, informations personnelles et paramètres. Interface moderne et responsive.',
-      imageUrl: 'assets/projects/react-native-app.jpg',
-      technologies: ['React Native', 'JavaScript', 'Expo', 'Mobile Development'],
-      githubUrl: 'https://github.com/Eya480/Mini-App-React-Native-Profil-Utilisateur-',
-      demoUrl: null,
-      category: 'mobile',
-      featured: false,
-      startDate: new Date('2025-11-01'),
-      endDate: new Date('2025-11-02'),
       status: 'completed'
     },
     {
