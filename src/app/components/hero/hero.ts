@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.html',
-  imports:[CommonModule],
+  imports:[CommonModule, RouterLink],
   styleUrls: ['./hero.scss']
 })
 export class Hero implements OnInit {

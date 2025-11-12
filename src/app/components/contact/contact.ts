@@ -39,8 +39,8 @@ export class Contact implements OnInit {
     {
       icon: 'fas fa-map-marker-alt',
       title: 'Localisation',
-      value: 'Tunisie, Tunis 2',
-      description: 'Disponible pour des missions en Île-de-France'
+      value: 'Tunis',
+      description: ''
     },
     {
       icon: 'fas fa-clock',
@@ -147,10 +147,5 @@ export class Contact implements OnInit {
     link.href = 'assets/cv.pdf';
     link.download = 'cv.pdf';
     link.click();
-  }
-
-  // Méthode pour planifier un appel
-  scheduleCall(): void {
-    window.open('https://calendly.com/eyaelgharbi889/30min', '_blank');
   }
 }

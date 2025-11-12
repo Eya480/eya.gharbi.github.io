@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 interface Experience {
   id: number;
@@ -19,7 +20,7 @@ interface Stat {
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
@@ -28,7 +29,7 @@ export class About implements OnInit {
     { icon: 'fas fa-project-diagram', value: '7+', label: 'Projets Réalisés' },
     { icon: 'fas fa-code', value: '10+', label: 'Technologies Dominées' },
     { icon: 'fas fa-graduation-cap', value: '2', label: 'Diplômes' },
-    { icon: 'fas fa-certificate', value: '3+', label: 'Certifications' }
+    { icon: 'fas fa-certificate', value: '10+', label: 'Certifications' }
   ];
 
   experiences: Experience[] = [
