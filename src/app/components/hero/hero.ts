@@ -16,7 +16,7 @@ export class Hero implements OnInit {
     'À la recherche de nouveaux défis professionnels',
     "En recherche active d'un stage de fin d'études",
     'Développeur full-stack motivé pour un stage PFE',
-    "Étudiant en informatique cherche stage de fin d'études",
+    "Étudiante en informatique cherche stage de fin d'études",
   ];
   private currentPhraseIndex = 0;
   private currentCharIndex = 0;
