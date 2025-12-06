@@ -159,6 +159,21 @@ export class Portfolio {
       startDate: new Date('2024-03-07'),
       endDate: new Date('2024-05-10'),
       status: 'completed'
+    },
+    {
+      id: 10,
+      title: 'MenuFragApp - Application Android',
+      description: 'Application Android avec fragments et navigation',
+      detailedDescription: 'Application Android développée pour démontrer l\'utilisation des fragments et de la navigation. Ce projet illustre également les bonnes pratiques Git, notamment l\'importance d\'utiliser "git add" avant "git commit". Erreur commune rencontrée : tentative de commit sans ajout préalable des fichiers au staging area. Solution : git add . puis git commit -m "first commit".',
+      imageUrl: 'assets/projects/menufragapp.jpg',
+      technologies: ['Android', 'Java', 'Fragments', 'Git', 'Android Studio'],
+      githubUrl: 'https://github.com/Eya480/MenuFragApp-master',
+      demoUrl: null,
+      category: 'mobile',
+      featured: false,
+      startDate: new Date('2024-01-15'),
+      endDate: new Date('2024-02-28'),
+      status: 'completed'
     }
   ];
 
