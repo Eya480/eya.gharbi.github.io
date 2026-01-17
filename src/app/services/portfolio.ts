@@ -56,7 +56,7 @@ export class Portfolio {
     },
     {
       id: 2,
-    title: 'Gestion de Projets Scolaires - Mobile',
+    title: 'Gestion de Projets Académiques - Mobile',
     description: 'Application mobile de gestion des projets pédagogiques',
     detailedDescription: 'Application mobile dédiée à la gestion des projets pédagogiques. Fonctionnalités mobiles : notifications push, consultation hors ligne, dépôt de photos, géolocalisation pour les projets terrain.',
     imageUrl: 'assets/gestionPMobile.png',
@@ -71,7 +71,7 @@ export class Portfolio {
     },
     {
       id: 3,
-    title: 'Gestion de Projets Scolaires - Web',
+    title: 'Gestion de Projets Académiques - Web',
     description: 'Plateforme web de gestion des projets pédagogiques',
     detailedDescription: 'Application web complète pour la gestion administrative des projets. Interface d\'administration avancée, génération de rapports PDF, gestion des utilisateurs, tableau de bord analytique.',
     imageUrl: 'assets/gestionPWeb.png',
@@ -96,11 +96,26 @@ export class Portfolio {
       category: 'web',
       featured: false,
       startDate: new Date('2025-02-10'),
-      endDate: new Date('2024-05-01'),
+      endDate: new Date('2025-05-01'),
       status: 'completed'
     },
     {
       id: 5,
+      title: 'Plateforme E-Commerce HelloCommerce',
+      description: 'Application e-commerce full stack pour la vente de produits avec gestion avancée des catégories et sous-catégories.',
+      detailedDescription: 'Développement d\'une plateforme e-commerce complète avec Spring Boot (backend) et Angular (frontend). Fonctionnalités : gestion des produits, catégories et sous-catégories, recherche filtrée, panier, commandes, espace administrateur, statistiques, authentification (email, Google OAuth2), paiement Stripe, gestion des stocks, et tableau de bord dynamique. Architecture RESTful, base de données relationnelle (MySQL), interface responsive et sécurisée.',
+      imageUrl: 'assets/ecommerceP.png',
+      technologies: ['Spring Boot', 'Angular', 'MySQL', 'Stripe', 'OAuth2', 'Bootstrap', 'Gestion catégories', 'Gestion sous-catégories', 'Gestion produits'],
+      githubUrl: 'https://github.com/Eya480/HelloCommerce',
+      demoUrl: null,
+      category: 'web',
+      featured: false,
+      startDate: new Date('2025-10-01'),
+      endDate: new Date('2025-12-01'),
+      status: 'completed'
+    },
+    {
+      id: 6,
       title: 'Gestion des Sessions de Formation ISET Radès',
       description: 'Système de gestion des sessions de formation pour l\'ISET Radès',
       detailedDescription: 'Application web développée pour la gestion complète des sessions de formation à l\'ISET Radès. Permet l\'organisation, le planning, le suivi des participants et la gestion des ressources pédagogiques.',
@@ -116,7 +131,7 @@ export class Portfolio {
     }
     ,
     {
-      id: 6,
+      id: 7,
       title: 'Gestion des Vols Tunisair',
       description: 'Application desktop de gestion des vols aériens',
       detailedDescription: 'Application desktop développée en Java avec JavaFX et SceneBuilder pour la gestion complète des vols de Tunisair. Interface intuitive pour la gestion des vols, passagers, réservations et statistiques.',
@@ -160,7 +175,58 @@ export class Portfolio {
       endDate: new Date('2024-05-10'),
       status: 'completed'
     }
+    ,
+    {
+      id: 10,
+      title: 'Meet Ordonna: Connecting Patients & Pharmacies',
+      description: 'Application mobile React Native pour la gestion des ordonnances et commandes en pharmacie.',
+      detailedDescription: `Excited to share Ordonna, a React Native mobile app that makes managing prescriptions and pharmacy orders simple and intuitive.\n\nPour les patients : visualisation des ordonnances, suivi des commandes, localisation des pharmacies à proximité.\nPour les pharmaciens : gestion des commandes, suivi du stock, statistiques journalières.\n\nTech Stack : React Native 0.81 & Expo SDK 54, React Navigation v7 (stack & bottom tabs), Zustand v5 (state management), AsyncStorage (offline persistence), React Native Maps, expo-location, expo-image-picker.`,
+      imageUrl: 'assets/projects/mobileGestionO.png',
+      technologies: [
+        'React Native 0.81',
+        'Expo SDK 54',
+        'React Navigation v7',
+        'Zustand v5',
+        'AsyncStorage',
+        'React Native Maps',
+        'expo-location',
+        'expo-image-picker'
+      ],
+      githubUrl: '',
+      demoUrl: null,
+      category: 'mobile',
+      featured: true,
+      startDate: new Date('2026-01-01'),
+      endDate: null,
+      status: 'in-progress'
+    }
+    ,
+    {
+      id: 11,
+      title: 'Gestion des Vols - Desktop Java',
+      description: 'Application desktop Java pour la gestion des vols avec sécurité renforcée.',
+      detailedDescription: `Application desktop complète développée en Java (JavaFX) pour la gestion des vols aériens : gestion des vols, passagers, réservations, statistiques. Sécurité avancée avec hashage des mots de passe via BCrypt, connexion à une base MySQL, gestion des rôles utilisateurs, et interface moderne.`,
+      imageUrl: 'assets/projects/gestion-vols.jpg',
+      technologies: [
+        'Java',
+        'JavaFX',
+        'MySQL',
+        'JDBC',
+        'BCrypt',
+        'Hashage mot de passe',
+        'Gestion rôles'
+      ],
+      githubUrl: 'https://github.com/Eya480/JavaDesktopApp-GestionVols',
+      demoUrl: null,
+      category: 'desktop',
+      featured: false,
+      startDate: new Date('2025-02-10'),
+      endDate: new Date('2025-05-01'),
+      status: 'completed'
+    }
   ];
+    
+    
 
   getSkills(): Observable<Skill[]> {
     return of(this.skills);

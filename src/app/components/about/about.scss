@@ -11,9 +11,11 @@ $border-color: #e9ecef;
 
 // Section About
 .about-section {
-  background: $white;
+  background: linear-gradient(135deg, $white 80%, $light-bg 100%);
   position: relative;
-  
+  border-radius: 18px;
+  box-shadow: 0 2px 24px rgba(44, 62, 80, 0.07);
+  border: 1px solid $border-color;
   &.section-padding {
     padding: 5rem 0;
   }
@@ -47,11 +49,15 @@ $border-color: #e9ecef;
 // Contenu principal - Centré
 .about-content {
   .about-greeting {
-    font-size: 2.2rem;
-    font-weight: 600;
+    font-size: 2.4rem;
+    font-weight: 700;
     color: $dark-color;
-    margin-bottom: 1.5rem;
-    
+    margin-bottom: 1.7rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    &:hover {
+      color: $secondary-color;
+    }
     .text-primary {
       color: $primary-color !important;
       background: linear-gradient(45deg, $primary-color, $secondary-color);
@@ -62,10 +68,16 @@ $border-color: #e9ecef;
   }
 
   .about-description {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: $text-muted;
-    margin-bottom: 2rem;
+    font-size: 1.22rem;
+    line-height: 2.1;
+    color: $dark-color;
+    margin-bottom: 2.2rem;
+    background: rgba(243, 246, 249, 0.7);
+    border-radius: 10px;
+    padding: 1.1rem 1.5rem;
+    box-shadow: 0 1px 8px rgba(44, 62, 80, 0.04);
+    border: 1px solid $border-color;
+    text-align: justify;
   }
 }
 
