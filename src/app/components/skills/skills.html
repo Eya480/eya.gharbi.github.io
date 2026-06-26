@@ -1,13 +1,14 @@
 <section id="skills" class="skills-section section-padding">
   <div class="container">
-    <div class="section-header text-center mb-5">
+    <div class="section-header text-center mb-4">
       <h2 class="section-title">Mes Compétences</h2>
       <p class="section-subtitle">Un aperçu de mes compétences techniques et professionnelles</p>
       <div class="section-divider"></div>
     </div>
 
-    <div class="row g-4">
-      <div class="col-lg-6" *ngFor="let category of categories">
+    <!-- Grille des compétences techniques - Compacte -->
+    <div class="row g-3">
+      <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let category of categories">
         <div class="skill-category-card">
           <div class="skill-category-header">
             <i class="skill-category-icon" [class]="getCategoryIcon(category)"></i>
@@ -21,12 +22,7 @@
                   <i *ngIf="skill.icon" [class]="skill.icon + ' skill-icon'"></i>
                   <span class="skill-name">{{ skill.name }}</span>
                 </div>
-                <div class="skill-meta">
-                  <span class="skill-level">{{ skill.level }}%</span>
-                  <span *ngIf="skill.yearsOfExperience" class="skill-experience">
-                    {{ skill.yearsOfExperience }} an{{ skill.yearsOfExperience > 1 ? 's' : '' }}
-                  </span>
-                </div>
+                <span class="skill-level">{{ skill.level }}%</span>
               </div>
               
               <div class="progress skill-progress">
@@ -46,17 +42,16 @@
       </div>
     </div>
 
-    <!-- Compétences soft -->
-    <div class="row mt-5">
+    <!-- Compétences soft - Compactes -->
+    <div class="row mt-4">
       <div class="col-12">
         <div class="soft-skills-section">
-          <h3 class="text-center mb-4">Compétences Professionnelles</h3>
-          <div class="row g-3 justify-content-center">
-            <div class="col-md-3 col-sm-6" *ngFor="let softSkill of softSkills">
+          <h3 class="text-center mb-3">Compétences Professionnelles</h3>
+          <div class="row g-2 justify-content-center">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6" *ngFor="let softSkill of softSkills">
               <div class="soft-skill-card text-center">
                 <i [class]="softSkill.icon"></i>
                 <h5>{{ softSkill.name }}</h5>
-                <p class="small">{{ softSkill.description }}</p>
               </div>
             </div>
           </div>

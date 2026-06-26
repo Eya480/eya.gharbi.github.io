@@ -4,7 +4,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { Navigation } from './components/navigation/navigation';
 import { Footer } from './components/footer/footer';
 import { filter } from 'rxjs';
-
+//ng build --base-href "https://eya480.github.io/eya.gharbi.github.io/" && npx gh-pages -d dist/mon-portfolio
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,CommonModule,Navigation, Footer],

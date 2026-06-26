@@ -17,6 +17,25 @@ $gradient-end: #764ba2;
   justify-content: center;
 }
 
+@mixin responsive($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: 575px) { @content; }
+  }
+  @if $breakpoint == sm {
+    @media (max-width: 767px) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (max-width: 991px) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: 1199px) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: 1399px) { @content; }
+  }
+}
+
+// Animations
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -33,16 +52,40 @@ $gradient-end: #764ba2;
   50% { opacity: 0; }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
 // Styles de la section hero
 .hero-section {
   position: relative;
   min-height: 100vh;
-  max-height: 100vh;
   background: rgb(23, 23, 70);
   overflow: hidden;
   color: $white;
   display: flex;
   align-items: center;
+  padding: 2rem 0;
+
+  @include responsive(md) {
+    min-height: auto;
+    padding: 3rem 0;
+  }
+
+  @include responsive(sm) {
+    padding: 2rem 0;
+  }
 }
 
 .hero-background {
@@ -74,7 +117,13 @@ $gradient-end: #764ba2;
       height: $size;
       top: random(100) * 1%;
       left: random(100) * 1%;
+      animation: float random(10) + 5s ease-in-out infinite;
+      animation-delay: random(5) * 1s;
     }
+  }
+
+  @include responsive(sm) {
+    display: none;
   }
 }
 
@@ -95,6 +144,13 @@ $gradient-end: #764ba2;
   position: relative;
   z-index: 2;
   padding: 2rem 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include responsive(md) {
+    padding: 1rem 15px;
+  }
 }
 
 // Contenu principal
@@ -104,6 +160,11 @@ $gradient-end: #764ba2;
   &.fade-in {
     animation: fadeInUp 0.8s ease-out;
   }
+
+  @include responsive(md) {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
 }
 
 .status-badge {
@@ -112,43 +173,97 @@ $gradient-end: #764ba2;
   background: rgba($white, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba($white, 0.2);
-  border-radius: 20px;
-  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
   margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba($white, 0.15);
+    transform: translateY(-2px);
+  }
   
   .badge-dot {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
     background: $success-color;
     border-radius: 50%;
-    margin-right: 0.4rem;
+    margin-right: 0.5rem;
     animation: blink 2s infinite;
   }
   
   .badge-text {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
+    letter-spacing: 0.5px;
+
+    @include responsive(sm) {
+      font-size: 0.75rem;
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1rem;
   }
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
   
   .text-highlight {
-    background: linear-gradient(45deg, $white, #f0f0f0);
+    background: linear-gradient(135deg, $secondary-color, $accent-color);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(135deg, $secondary-color, $accent-color);
+      border-radius: 3px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.6s ease;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  @include responsive(lg) {
+    font-size: 2.8rem;
+  }
+
+  @include responsive(md) {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  @include responsive(sm) {
+    font-size: 2rem;
+  }
+
+  @include responsive(xs) {
+    font-size: 1.8rem;
   }
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 1rem;
-  min-height: 1.8rem;
+  min-height: 2.5rem;
   
   .typed-text {
     font-weight: 300;
@@ -159,77 +274,188 @@ $gradient-end: #764ba2;
     color: $secondary-color;
     animation: blink 1s infinite;
     margin-left: 2px;
+    font-weight: 300;
+  }
+
+  @include responsive(md) {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  @include responsive(sm) {
+    font-size: 1rem;
+    min-height: 2rem;
+  }
+
+  @include responsive(xs) {
+    font-size: 0.9rem;
   }
 }
 
 .hero-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
   color: rgba($white, 0.8);
+  max-width: 500px;
   
   strong {
     color: $white;
     font-weight: 600;
   }
+
+  @include responsive(md) {
+    text-align: center;
+    max-width: 100%;
+    font-size: 0.95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @include responsive(sm) {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
-// Statistiques compactes
+// Statistiques
 .hero-stats {
   display: flex;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  gap: 2.5rem;
+  margin-bottom: 2.5rem;
   
   .stat-item {
     text-align: center;
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      right: -1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 70%;
+      background: rgba($white, 0.1);
+    }
+
+    &:last-child::after {
+      display: none;
+    }
     
     .stat-number {
       display: block;
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      color: $white;
+      background: linear-gradient(135deg, $secondary-color, $accent-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 0.2rem;
     }
     
     .stat-label {
-      font-size: 0.75rem;
+      font-size: 0.85rem;
       color: rgba($white, 0.7);
+      font-weight: 400;
+    }
+  }
+
+  @include responsive(md) {
+    justify-content: center;
+    gap: 1.5rem;
+    
+    .stat-item {
+      &::after {
+        right: -0.75rem;
+      }
+      
+      .stat-number {
+        font-size: 1.5rem;
+      }
+      
+      .stat-label {
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  @include responsive(sm) {
+    gap: 1rem;
+    
+    .stat-item {
+      &::after {
+        display: none;
+      }
+      
+      .stat-number {
+        font-size: 1.2rem;
+      }
+      
+      .stat-label {
+        font-size: 0.7rem;
+      }
     }
   }
 }
 
-// Boutons d'action compacts
+// Boutons d'action
 .hero-actions {
   display: flex;
-  gap: 0.8rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
   
   .btn {
     position: relative;
     overflow: hidden;
     border: none;
-    border-radius: 25px;
-    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    padding: 0.9rem 2rem;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     text-decoration: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
     
     .btn-content {
       position: relative;
       z-index: 2;
       display: flex;
       align-items: center;
+      gap: 0.5rem;
     }
-    
+
+    .btn-hover-effect {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
     &:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      
+      .btn-hover-effect {
+        left: 100%;
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px);
     }
     
     &.btn-primary {
-      background: linear-gradient(45deg, $secondary-color, $accent-color);
+      background: linear-gradient(135deg, $secondary-color, $accent-color);
       color: $white;
+      box-shadow: 0 4px 15px rgba($secondary-color, 0.3);
+
+      &:hover {
+        box-shadow: 0 8px 30px rgba($secondary-color, 0.4);
+      }
     }
     
     &.btn-outline-light {
@@ -240,50 +466,95 @@ $gradient-end: #764ba2;
       &:hover {
         background: rgba($white, 0.1);
         border-color: $white;
+        box-shadow: 0 8px 30px rgba($white, 0.1);
       }
+    }
+  }
+
+  @include responsive(md) {
+    justify-content: center;
+    
+    .btn {
+      padding: 0.8rem 1.8rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @include responsive(sm) {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    
+    .btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.85rem;
     }
   }
 }
 
-// Réseaux sociaux compacts
+// Réseaux sociaux
 .hero-social {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
+  flex-wrap: wrap;
   
   .social-label {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: rgba($white, 0.7);
+    font-weight: 400;
   }
   
   .social-links {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
   
   .social-link {
     @include flex-center;
-    width: 32px;
-    height: 32px;
-    background: rgba($white, 0.1);
+    width: 40px;
+    height: 40px;
+    background: rgba($white, 0.05);
     border-radius: 50%;
     color: $white;
     text-decoration: none;
     transition: all 0.3s ease;
+    border: 1px solid rgba($white, 0.1);
+    font-size: 1.1rem;
     
     &:hover {
       background: $white;
       color: $primary-color;
-      transform: translateY(-2px);
+      transform: translateY(-3px) scale(1.05);
+      border-color: $white;
+      box-shadow: 0 5px 20px rgba($white, 0.2);
     }
     
     i {
+      font-size: 1rem;
+    }
+  }
+
+  @include responsive(md) {
+    justify-content: center;
+  }
+
+  @include responsive(sm) {
+    .social-label {
+      font-size: 0.75rem;
+    }
+    
+    .social-link {
+      width: 35px;
+      height: 35px;
       font-size: 0.9rem;
     }
   }
 }
 
-// Container de l'image compact
+// Container de l'image
 .hero-image-container {
   position: relative;
   padding: 1rem;
@@ -291,11 +562,16 @@ $gradient-end: #764ba2;
   &.fade-in {
     animation: fadeInUp 0.8s ease-out 0.2s both;
   }
+
+  @include responsive(md) {
+    padding: 0.5rem;
+    margin-top: 2rem;
+  }
 }
 
 .image-wrapper {
   position: relative;
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   
   &.loaded {
@@ -304,131 +580,212 @@ $gradient-end: #764ba2;
       transform: scale(1);
     }
   }
+
+  @include responsive(lg) {
+    max-width: 350px;
+  }
+
+  @include responsive(md) {
+    max-width: 300px;
+  }
+
+  @include responsive(sm) {
+    max-width: 250px;
+  }
+
+  @include responsive(xs) {
+    max-width: 200px;
+  }
 }
 
 .hero-image {
   width: 100%;
   height: auto;
-  border-radius: 15px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: scale(0.9);
   transition: all 0.6s ease;
   position: relative;
   z-index: 2;
+  border: 3px solid rgba($white, 0.1);
+  
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  }
 }
 
-// Badges de technologies compacts
+// Badges de technologies
 .tech-badge {
   position: absolute;
   background: rgba($white, 0.95);
-  border-radius: 15px;
-  padding: 0.3rem 0.6rem;
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 0.4rem 0.8rem;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: $dark-color;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   z-index: 3;
+  animation: float 4s ease-in-out infinite;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
   
   i {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  span {
+    font-size: 0.7rem;
+  }
+
+  @include responsive(md) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.65rem;
+    
+    i {
+      font-size: 0.8rem;
+    }
+    
+    span {
+      font-size: 0.6rem;
+    }
+  }
+
+  @include responsive(sm) {
+    padding: 0.2rem 0.4rem;
+    
+    span {
+      display: none;
+    }
+    
+    i {
+      font-size: 0.7rem;
+    }
   }
   
   &.spring-badge {
-    top: 1%;
-    left: 5%;
+    top: 5%;
+    left: -10%;
+    animation-delay: 0s;
     i { color: #6db33f; }
   }
   
   &.angular-badge {
-    top: 10%;
-    right: 3%;
+    top: 15%;
+    right: -15%;
+    animation-delay: 1s;
     i { color: #dd0031; }
   }
   
   &.java-badge {
-    bottom: 5%;
-    left: 3%;
+    bottom: 20%;
+    left: -15%;
+    animation-delay: 2s;
     i { color: #007396; }
   }
   
-  &.python-badge {
-    bottom:1%;
-    right: 5%;
-    i { color: #3776ab; }
+  &.nextjs-badge {
+    bottom: 5%;
+    right: -10%;
+    animation-delay: 3s;
+    i { color: #000000; }
+  }
+
+  &.nestjs-badge {
+    top: 40%;
+    right: -20%;
+    animation-delay: 1.5s;
+    i { color: #e0234e; }
   }
 }
 
-// Carte d'expérience compacte
-.experience-card {
-  position: absolute;
-  bottom: -15px;
-  right: 10px;
-  background: linear-gradient(45deg, $secondary-color, $accent-color);
-  border-radius: 12px;
-  padding: 0.8rem 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  z-index: 4;
-  animation: fadeInUp 0.8s ease-out 0.4s both;
-  
-  .card-content {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+// Responsive complet pour les badges
+@include responsive(lg) {
+  .tech-badge {
+    &.spring-badge { left: -5%; }
+    &.angular-badge { right: -5%; }
+    &.java-badge { left: -5%; }
+    &.nextjs-badge { right: -5%; }
+    &.nestjs-badge { right: -10%; }
   }
-  
-  .card-icon {
-    font-size: 1.2rem;
-    color: $white;
-  }
-  
-  .card-text {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-value {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: $white;
-  }
-  
-  .card-label {
-    font-size: 0.7rem;
-    color: rgba($white, 0.8);
+}
+
+@include responsive(md) {
+  .tech-badge {
+    &.spring-badge { top: 10%; left: 5%; }
+    &.angular-badge { top: 15%; right: 5%; }
+    &.java-badge { bottom: 25%; left: 5%; }
+    &.nextjs-badge { bottom: 10%; right: 5%; }
+    &.nestjs-badge { top: 35%; right: 5%; }
   }
 }
 
 // Indicateur de scroll
 .scroll-indicator {
   position: absolute;
-  bottom: 1rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
   color: rgba($white, 0.7);
   z-index: 2;
+  cursor: pointer;
   
   .scroll-arrow {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: 2px solid rgba($white, 0.3);
     border-radius: 50%;
     @include flex-center;
-    margin: 0 auto 0.3rem;
+    margin: 0 auto 0.5rem;
     animation: bounce 2s infinite;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: $white;
+      background: rgba($white, 0.1);
+    }
     
     i {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
     }
   }
   
   .scroll-text {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  @include responsive(sm) {
+    bottom: 1rem;
+    
+    .scroll-arrow {
+      width: 30px;
+      height: 30px;
+      
+      i {
+        font-size: 0.8rem;
+      }
+    }
+    
+    .scroll-text {
+      font-size: 0.7rem;
+    }
+  }
+
+  @include responsive(xs) {
+    display: none;
   }
 }
 
@@ -437,187 +794,125 @@ $gradient-end: #764ba2;
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
   }
   60% {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
   }
 }
 
-// Responsive pour écrans très petits
+// Classes utilitaires pour la grille
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-lg-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+
+  @include responsive(md) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.col-md-12 {
+  @include responsive(md) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+// Animations de fade-in
+.fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+// Responsive général
+@media (max-width: 1400px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
 @media (max-width: 992px) {
-  .hero-section {
-    min-height: 100vh;
-    max-height: none;
-  }
-  
-  .hero-title {
-    font-size: 2rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem;
-  }
-  
-  .hero-stats {
-    gap: 1rem;
-    
-    .stat-item .stat-number {
-      font-size: 1.1rem;
-    }
+  .container {
+    max-width: 720px;
   }
 }
 
 @media (max-width: 768px) {
-  .hero-section {
-    padding: 1rem 0;
-    min-height: 100vh;
-  }
-  
   .container {
-    padding: 1rem 0;
-  }
-  
-  .hero-title {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem;
-    text-align: center;
-  }
-  
-  .hero-description {
-    text-align: center;
-    font-size: 0.85rem;
-  }
-  
-  .status-badge {
-    align-self: center;
-  }
-  
-  .hero-stats {
-    justify-content: center;
-    gap: 1rem;
-    
-    .stat-item {
-      .stat-number {
-        font-size: 1rem;
-      }
-      .stat-label {
-        font-size: 0.7rem;
-      }
-    }
-  }
-  
-  .hero-actions {
-    justify-content: center;
-    
-    .btn {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.8rem;
-    }
-  }
-  
-  .hero-social {
-    justify-content: center;
-  }
-  
-  .hero-image-container {
-    padding: 0.5rem;
-  }
-  
-  .image-wrapper {
-    max-width: 250px;
-  }
-  
-  .tech-badge {
-    padding: 0.2rem 0.4rem;
-    font-size: 0.6rem;
-    
-    span {
-      display: none;
-    }
-  }
-  
-  .experience-card {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 1rem;
-    max-width: 160px;
-    margin-left: auto;
-    margin-right: auto;
-    
-    .card-value {
-      font-size: 0.8rem;
-    }
+    max-width: 540px;
   }
 }
 
 @media (max-width: 576px) {
-  .hero-title {
-    font-size: 1.5rem;
+  .container {
+    max-width: 100%;
+    padding: 0 15px;
   }
-  
-  .hero-stats {
-    flex-direction: row;
-    justify-content: space-around;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  .hero-section {
+    background: rgb(10, 10, 30);
   }
-  
-  .hero-actions {
-    flex-direction: column;
-    align-items: center;
+}
+
+// Performances
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// Support de l'impression
+@media print {
+  .hero-section {
+    min-height: auto;
+    background: white;
+    color: black;
+    padding: 20px;
+    
+    .hero-background,
+    .gradient-overlay,
+    .particles-container {
+      display: none;
+    }
+    
+    .hero-image {
+      max-width: 200px;
+    }
     
     .btn {
-      width: 200px;
+      border: 1px solid #ddd;
+      background: transparent !important;
+      color: black !important;
     }
-  }
-  
-  .particle {
-    display: none;
-  }
-  
-  .scroll-indicator {
-    bottom: 0.5rem;
-    
-    .scroll-arrow {
-      width: 25px;
-      height: 25px;
-    }
-    
-    .scroll-text {
-      font-size: 0.7rem;
-    }
-  }
-}
-
-// Pour les écrans très hauts
-@media (min-height: 900px) {
-  .hero-section {
-    min-height: 100vh;
-    max-height: 100vh;
-  }
-}
-
-// Pour les écrans très petits en hauteur
-@media (max-height: 600px) {
-  .hero-section {
-    min-height: 600px;
-    max-height: 600px;
-  }
-  
-  .container {
-    padding: 1rem 0;
-  }
-  
-  .hero-stats,
-  .hero-social {
-    display: none;
-  }
-  
-  .hero-actions {
-    margin-bottom: 1rem;
   }
 }
