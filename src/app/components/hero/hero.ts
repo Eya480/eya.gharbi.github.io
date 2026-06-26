@@ -13,10 +13,10 @@ export class Hero implements OnInit {
   subtitle = 'Passionnée par les technologies modernes et innovantes';
   typedText = '';
   private phrases = [
-    'À la recherche de nouveaux défis professionnels',
-    "En recherche active d'un stage de fin d'études",
-    'Développeuse full-stack motivé pour un stage PFE',
-    "Étudiante en informatique cherche stage de fin d'études",
+    'Développeuse Full Stack passionnée par l\'innovation',
+    'Diplômée ISET Radès — Licence en Systèmes d\'Information',
+    'NestJS · Next.js · IA · Architecture logicielle',
+    'Ouverte aux nouvelles opportunités professionnelles',
   ];
   private currentPhraseIndex = 0;
   private currentCharIndex = 0;

@@ -20,21 +20,43 @@ interface Stat {
 
 @Component({
   selector: 'app-about',
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
 export class About implements OnInit {
+
   stats: Stat[] = [
-    { icon: 'fas fa-project-diagram', value: '7+', label: 'Projets Réalisés' },
-    { icon: 'fas fa-code', value: '10+', label: 'Technologies Dominées' },
-    { icon: 'fas fa-graduation-cap', value: '2', label: 'Diplômes' },
-    { icon: 'fas fa-certificate', value: '10+', label: 'Certifications' }
+    // ✅ 12 projets (11 existants + SolidMaint)
+    { icon: 'fas fa-project-diagram', value: '12+', label: 'Projets Réalisés' },
+    // ✅ Technologies réelles comptées dans skills
+    { icon: 'fas fa-code', value: '20+', label: 'Technologies Maîtrisées' },
+    // ✅ Diplôme obtenu — PFE terminé juin 2026
+    { icon: 'fas fa-graduation-cap', value: '1', label: 'Diplôme Obtenu' },
+    // ✅ Stages réels : CNI + STEG + SolidWall
+    { icon: 'fas fa-briefcase', value: '3', label: 'Stages Professionnels' }
   ];
 
   experiences: Experience[] = [
+
+    // ==================== WORK ====================
+
     {
       id: 1,
+      title: 'Stagiaire Développeur Full Stack — PFE',
+      company: 'SolidWall Consulting, Ben Arous',
+      period: 'Fév 2026 - Mai 2026',
+      description: 'Conception et réalisation en binôme de SolidMaint, une plateforme B2B intelligente de gestion des contrats de maintenance. Intégration d\'un module IA complet basé sur LLaMA 3.3 70B via Groq Cloud : classification automatique des demandes, analyse des blocages et génération d\'articles de base de connaissances. Pipeline de robustesse : anonymisation PII, cache MD5, retry avec backoff exponentiel, rate limiting et traçabilité complète. Authentification RBAC avec JWT et OAuth Google/GitHub, gestion SLA, messagerie temps réel WebSocket, notifications multicanaux et génération de rapports PDF.',
+      technologies: [
+        'Next.js', 'NestJS', 'TypeScript', 'PostgreSQL',
+        'Redis', 'Docker', 'Prisma', 'LLaMA 3.3 70B',
+        'Groq Cloud', 'WebSocket', 'Tailwind CSS', 'shadcn/ui',
+        'Vitest', 'Playwright', 'Grafana k6', 'OWASP ZAP'
+      ],
+      type: 'work'
+    },
+    {
+      id: 2,
       title: 'Stagiaire Développeur Full Stack',
       company: 'Centre National de l\'Informatique (CNI)',
       period: 'Jan 2025 - Fév 2025',
@@ -43,38 +65,46 @@ export class About implements OnInit {
       type: 'work'
     },
     {
-      id: 2,
-      title: 'Formatrice en gestion de projet',
-      company: 'USAID, Ma3an - Programme YLN',
-      period: 'Jul 2024 - Nov 2024',
+      id: 3,
+      title: 'Formatrice en Gestion de Projet',
+      company: 'USAID, Ma3an — Programme YLN',
+      period: 'Juil 2024 - Nov 2024',
       description: 'Encadrement de participants pour l\'élaboration de plans de projet concrets et animation de formations en gestion de projet.',
       technologies: ['Gestion de Projet', 'Formation', 'Animation'],
       type: 'work'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Stagiaire en Informatique',
-      company: 'Société Tunisienne d\'Électricité et de Gaz',
+      company: 'Société Tunisienne d\'Électricité et de Gaz (STEG)',
       period: 'Jan 2024 - Fév 2024',
       description: 'Support technique : formatage, réinstallation de systèmes d\'exploitation et assistance aux utilisateurs.',
-      technologies: ['Support Technique', 'Systèmes d\'Exploitation'],
+      technologies: ['Support Technique', 'Windows', 'Systèmes d\'Exploitation'],
       type: 'work'
     },
+
+    // ==================== EDUCATION ====================
+
     {
-      id: 4,
-      title: 'Licence en Technologie de l\'Information',
-      company: 'ISET Radès - Développement des Systèmes d\'Information',
-      period: '2023 - En cours',
-      description: 'Formation en développement des systèmes d\'information et technologies web.',
-      technologies: ['Java', 'Web', 'Bases de données', 'Réseaux'],
+      id: 5,
+      title: 'Licence Nationale en Technologies de l\'Informatique',
+      company: 'ISET Radès — Spécialité : Développement des Systèmes d\'Information',
+      period: '2023 - 2026',
+      // ✅ Diplômée juin 2026
+      description: 'Formation complète en développement des systèmes d\'information, technologies web et mobiles. Projet de Fin d\'Études : SolidMaint — plateforme B2B de gestion de maintenance avec IA intégrée, réalisé chez SolidWall Consulting. Diplômée avec mention.',
+      technologies: [
+        'Java', 'Angular', 'Spring Boot', 'NestJS',
+        'Next.js', 'Python', 'Bases de données', 'Réseaux',
+        'UML', 'Agile Scrum'
+      ],
       type: 'education'
     },
     {
-      id: 5,
-      title: 'Baccalauréat en Sciences Informatiques',
-      company: 'Lycée secondaire Zaahrouni - Mention Bien',
+      id: 6,
+      title: 'Baccalauréat en Sciences Informatiques — Mention Bien',
+      company: 'Lycée Secondaire Zaahrouni',
       period: '2019 - 2023',
-      description: 'Formation fondamentale en informatique et sciences.',
+      description: 'Formation fondamentale en informatique, algorithmique et sciences exactes. Obtenu avec mention Bien.',
       technologies: ['Algorithmique', 'Programmation', 'Mathématiques'],
       type: 'education'
     }
