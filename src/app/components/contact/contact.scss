@@ -1,4 +1,5 @@
 // Variables
+@use "sass:color";
 $primary-color: #2c3e50;
 $secondary-color: #3498db;
 $accent-color: #e74c3c;
@@ -110,7 +111,7 @@ $border-color: #e9ecef;
         transition: color 0.3s ease;
 
         &:hover {
-          color: darken($secondary-color, 10%);
+          color: color.adjust($secondary-color, $lightness: -10%);
         }
       }
 
@@ -285,7 +286,7 @@ $border-color: #e9ecef;
       }
 
       &::placeholder {
-        color: lighten($text-muted, 20%);
+        color: color.adjust($text-muted, $lightness: 20%);
       }
     }
 

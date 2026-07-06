@@ -1,4 +1,5 @@
 // Variables pour le footer
+@use "sass:color";
 $footer-bg: #2c3e50;
 $footer-text: #ecf0f1;
 $footer-accent: #3498db;
@@ -21,7 +22,7 @@ $footer-border: rgba(255, 255, 255, 0.1);
 }
 
 .footer {
-  background: linear-gradient(135deg, $footer-bg 0%, darken($footer-bg, 5%) 100%);
+  background: linear-gradient(135deg, $footer-bg 0%, color.adjust($footer-bg, $lightness: -5%) 100%);
   color: $footer-text;
   position: relative;
   overflow: hidden;
@@ -521,7 +522,7 @@ $footer-border: rgba(255, 255, 255, 0.1);
       }
       
       &:hover {
-        background: darken($footer-accent, 10%);
+        background: color.adjust($footer-accent, $lightness: -10%);
         transform: scale(1.05);
       }
 
@@ -616,7 +617,7 @@ $footer-border: rgba(255, 255, 255, 0.1);
   }
   
   &:hover {
-    background: darken($footer-accent, 10%);
+    background: color.adjust($footer-accent, $lightness: -10%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 30px rgba($footer-accent, 0.4);
     
