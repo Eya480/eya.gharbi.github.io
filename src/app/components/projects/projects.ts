@@ -137,4 +137,9 @@ export class Projects implements OnInit, OnDestroy {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
+
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = 'assets/iconP.jpg';
+  }
 }

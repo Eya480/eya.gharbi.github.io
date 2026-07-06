@@ -51,7 +51,8 @@
                   <img 
                     [src]="project.imageUrl"
                     [alt]="project.title"
-                    class="project-image">
+                    class="project-image"
+                    (error)="onImageError($event)">
                   <div class="project-overlay">
                     <button class="btn-view-details" (click)="openProjectModal(project)">
                       <i class="fas fa-eye me-2"></i>
@@ -151,10 +152,10 @@
               
               <div class="project-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1551650975-87deedd944c3" 
+                  [src]="project.imageUrl"
                   [alt]="project.title"
-                  class="project-image">
-                <div class="project-overlay">
+                  class="project-image"
+                  (error)="onImageError($event)">                <div class="project-overlay">
                   <button class="btn-view-details" (click)="openProjectModal(project)">
                     <i class="fas fa-eye me-2"></i>
                     Voir les détails
@@ -254,7 +255,8 @@
             <img 
               [src]="selectedProject.imageUrl" 
               [alt]="selectedProject.title"
-              class="img-fluid rounded">
+              class="img-fluid rounded"
+              (error)="onImageError($event)">
           </div>
           
           <div class="col-md-6">

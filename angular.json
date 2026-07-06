@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mon-portfolio": {
+    "eya-gharbi": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,7 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "index": "src/index.html",
-            "outputPath": "dist/mon-portfolio",
+            "outputPath": "dist/eya-gharbi",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mon-portfolio:build:production"
+              "buildTarget": "eya-gharbi:build:production"
             },
             "development": {
-              "buildTarget": "mon-portfolio:build:development"
+              "buildTarget": "eya-gharbi:build:development"
             }
           },
           "defaultConfiguration": "development"

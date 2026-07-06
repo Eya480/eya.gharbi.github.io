@@ -1,740 +1,306 @@
-// Variables pour le footer
 @use "sass:color";
-$footer-bg: #2c3e50;
-$footer-text: #ecf0f1;
-$footer-accent: #3498db;
-$footer-border: rgba(255, 255, 255, 0.1);
 
-// Mixins responsive
-@mixin responsive($breakpoint) {
-  @if $breakpoint == xs {
-    @media (max-width: 575px) { @content; }
-  }
-  @if $breakpoint == sm {
-    @media (max-width: 767px) { @content; }
-  }
-  @if $breakpoint == md {
-    @media (max-width: 991px) { @content; }
-  }
-  @if $breakpoint == lg {
-    @media (max-width: 1199px) { @content; }
-  }
-}
+// ─── Tokens ──────────────────────────────────────────────────────
+$navy:       #0f172a;
+$blue:       #3b82f6;
+$violet:     #8b5cf6;
+$white:      #ffffff;
+$border:     rgba(255,255,255,0.08);
+$text:       rgba(255,255,255,0.8);
+$text-muted: rgba(255,255,255,0.45);
 
+$font-heading: 'Space Grotesk', 'Inter', sans-serif;
+
+// ─── Footer ──────────────────────────────────────────────────────
 .footer {
-  background: linear-gradient(135deg, $footer-bg 0%, color.adjust($footer-bg, $lightness: -5%) 100%);
-  color: $footer-text;
+  background: $navy;
+  color: $text;
   position: relative;
   overflow: hidden;
-  margin-top: auto;
-  
+
+  // Subtle top accent line
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, $footer-accent, transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @include responsive(md) {
-    &::before {
-      height: 1px;
-    }
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($blue, 0.5), rgba($violet, 0.5), transparent);
   }
 }
 
-@keyframes shimmer {
-  0% { opacity: 0.3; }
-  50% { opacity: 1; }
-  100% { opacity: 0.3; }
-}
-
+// ─── Main section ────────────────────────────────────────────────
 .footer-main {
-  padding: 4rem 0 2rem;
-  
+  padding: 3.5rem 0 2rem;
+
+  @media (max-width: 768px) { padding: 2.5rem 0 1.5rem; }
+
   .container {
-    position: relative;
-    z-index: 2;
-  }
-
-  @include responsive(md) {
-    padding: 3rem 0 1.5rem;
-  }
-
-  @include responsive(sm) {
-    padding: 2rem 0 1rem;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
   }
 }
 
-// Grille responsive
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -12px;
-
-  @include responsive(sm) {
-    margin: 0 -8px;
-  }
+// Row/col layout (uses Bootstrap from HTML)
+.row.g-4 > [class*="col-"] {
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-[class*="col-"] {
-  padding: 0 12px;
-
-  @include responsive(sm) {
-    padding: 0 8px;
-  }
-}
-
-.col-lg-4 { flex: 0 0 33.333%; max-width: 33.333%; }
-.col-lg-3 { flex: 0 0 25%; max-width: 25%; }
-.col-lg-2 { flex: 0 0 16.666%; max-width: 16.666%; }
-.col-md-6 { flex: 0 0 50%; max-width: 50%; }
-.col-sm-12 { flex: 0 0 100%; max-width: 100%; }
-.col-sm-6 { flex: 0 0 50%; max-width: 50%; }
-.col-6 { flex: 0 0 50%; max-width: 50%; }
-
-@include responsive(lg) {
-  .col-lg-4 { flex: 0 0 100%; max-width: 100%; }
-  .col-lg-3 { flex: 0 0 50%; max-width: 50%; }
-  .col-lg-2 { flex: 0 0 50%; max-width: 50%; }
-}
-
-@include responsive(md) {
-  .col-md-6 { flex: 0 0 100%; max-width: 100%; }
-}
-
-@include responsive(sm) {
-  .col-sm-6 { flex: 0 0 100%; max-width: 100%; }
-  .col-sm-12 { flex: 0 0 100%; max-width: 100%; }
-}
-
-// Brand Section
+// ─── Brand block ─────────────────────────────────────────────────
 .footer-brand {
   .brand-text {
-    font-size: 2rem;
+    font-family: $font-heading;
+    font-size: 1.3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, $footer-text, $footer-accent);
+    background: linear-gradient(135deg, #fff, $blue);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1rem;
-    display: inline-block;
-    
-    @include responsive(sm) {
-      font-size: 1.8rem;
-    }
+    margin-bottom: 0.9rem;
+    display: block;
+    letter-spacing: -0.02em;
   }
-  
-  .footer-description {
-    color: rgba($footer-text, 0.8);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
 
-    @include responsive(sm) {
-      font-size: 0.9rem;
-      margin-bottom: 1.5rem;
-    }
+  .footer-description {
+    font-size: 0.84rem;
+    color: $text-muted;
+    line-height: 1.65;
+    margin-bottom: 1.4rem;
+    max-width: 260px;
   }
 }
 
-// Social Links
+// ─── Social links ────────────────────────────────────────────────
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
-  
+
   .social-link {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba($white, 0.06);
+    border: 1px solid $border;
+    color: $text-muted;
     text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    border: 2px solid transparent;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-    
+    transition: all 0.2s ease;
+
+    i { font-size: 0.9rem; }
+
     &:hover {
-      transform: translateY(-3px) scale(1.1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-      border-color: rgba(255, 255, 255, 0.3);
-      
-      &::before {
-        left: 100%;
-      }
-      
-      i {
-        transform: scale(1.2) rotate(10deg);
-      }
-    }
-    
-    i {
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-
-    @include responsive(sm) {
-      width: 40px;
-      height: 40px;
-      
-      i {
-        font-size: 1rem;
-      }
-    }
-
-    @include responsive(xs) {
-      width: 35px;
-      height: 35px;
-      
-      i {
-        font-size: 0.9rem;
-      }
-    }
-  }
-
-  @include responsive(md) {
-    justify-content: center;
-  }
-}
-
-// Links Section
-.footer-links {
-  .links-title {
-    color: $footer-text;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 30px;
-      height: 2px;
-      background: $footer-accent;
-      border-radius: 2px;
-    }
-
-    @include responsive(md) {
-      text-align: center;
-      
-      &::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    @include responsive(sm) {
-      font-size: 1.1rem;
-    }
-  }
-  
-  .links-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    
-    li {
-      margin-bottom: 0.75rem;
-      
-      @include responsive(sm) {
-        margin-bottom: 0.5rem;
-      }
-    }
-  }
-  
-  .footer-link {
-    color: rgba($footer-text, 0.8);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 0;
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
-    font-size: 0.95rem;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: $footer-accent;
-      transition: width 0.3s ease;
-    }
-    
-    &:hover {
-      color: $footer-accent;
-      transform: translateX(5px);
-      
-      &::before {
-        width: 100%;
-      }
-      
-      i {
-        color: $footer-accent;
-      }
-    }
-    
-    i {
-      transition: all 0.3s ease;
-      width: 20px;
-      font-size: 0.9rem;
-    }
-
-    @include responsive(sm) {
-      font-size: 0.85rem;
-      padding: 0.3rem 0;
-      
-      i {
-        width: 16px;
-        font-size: 0.8rem;
-      }
-    }
-  }
-
-  @include responsive(md) {
-    text-align: center;
-  }
-}
-
-// Contact Section
-.footer-contact {
-  .contact-title {
-    color: $footer-text;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 30px;
-      height: 2px;
-      background: $footer-accent;
-      border-radius: 2px;
-    }
-
-    @include responsive(md) {
-      text-align: center;
-      
-      &::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    @include responsive(sm) {
-      font-size: 1.1rem;
-    }
-  }
-  
-  .contact-info {
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 1.2rem;
-      
-      @include responsive(sm) {
-        margin-bottom: 1rem;
-      }
-      
-      .contact-icon {
-        color: $footer-accent;
-        margin-right: 1rem;
-        margin-top: 0.25rem;
-        font-size: 1.1rem;
-        width: 20px;
-        text-align: center;
-        flex-shrink: 0;
-
-        @include responsive(sm) {
-          font-size: 1rem;
-          width: 18px;
-          margin-right: 0.8rem;
-        }
-      }
-      
-      div {
-        flex: 1;
-        min-width: 0;
-      }
-      
-      .contact-label {
-        display: block;
-        font-size: 0.8rem;
-        color: rgba($footer-text, 0.6);
-        margin-bottom: 0.2rem;
-      }
-      
-      .contact-value {
-        color: $footer-text;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        font-size: 0.9rem;
-        word-break: break-word;
-        
-        &:hover {
-          color: $footer-accent;
-        }
-
-        @include responsive(sm) {
-          font-size: 0.85rem;
-        }
-      }
-    }
-
-    @include responsive(md) {
-      text-align: center;
-      
-      .contact-item {
-        justify-content: center;
-        text-align: center;
-        
-        .contact-icon {
-          margin-right: 0.5rem;
-        }
-      }
-    }
-  }
-}
-
-// Newsletter Section
-.footer-newsletter {
-  .newsletter-title {
-    color: $footer-text;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -0.5rem;
-      left: 0;
-      width: 30px;
-      height: 2px;
-      background: $footer-accent;
-      border-radius: 2px;
-    }
-
-    @include responsive(md) {
-      text-align: center;
-      
-      &::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
-
-    @include responsive(sm) {
-      font-size: 1.1rem;
-    }
-  }
-  
-  .newsletter-description {
-    color: rgba($footer-text, 0.8);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-    font-size: 0.95rem;
-
-    @include responsive(sm) {
-      font-size: 0.9rem;
-      text-align: center;
-    }
-  }
-  
-  .newsletter-form {
-    display: flex;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    
-    &:focus-within {
-      border-color: $footer-accent;
-      box-shadow: 0 0 0 3px rgba($footer-accent, 0.2);
-      background: rgba(255, 255, 255, 0.12);
-    }
-    
-    .newsletter-input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      color: $footer-text;
-      outline: none;
-      font-size: 0.95rem;
-      min-width: 0;
-      
-      &::placeholder {
-        color: rgba($footer-text, 0.5);
-      }
-
-      @include responsive(sm) {
-        padding: 0.7rem 1rem;
-        font-size: 0.9rem;
-      }
-    }
-    
-    .newsletter-btn {
-      background: $footer-accent;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      i {
-        font-size: 1.1rem;
-      }
-      
-      &:hover {
-        background: color.adjust($footer-accent, $lightness: -10%);
-        transform: scale(1.05);
-      }
-
-      &:active {
-        transform: scale(0.95);
-      }
-
-      @include responsive(sm) {
-        padding: 0.7rem 1.2rem;
-        
-        i {
-          font-size: 1rem;
-        }
-      }
-    }
-
-    @include responsive(xs) {
-      border-radius: 30px;
-    }
-  }
-
-  @include responsive(md) {
-    text-align: center;
-  }
-}
-
-// Footer Bottom
-.footer-bottom {
-  border-top: 1px solid $footer-border;
-  padding: 2rem 0;
-  position: relative;
-  background: rgba(0, 0, 0, 0.1);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, $footer-accent, transparent);
-  }
-
-  @include responsive(sm) {
-    padding: 1.5rem 0;
-  }
-}
-
-.footer-bottom-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  gap: 1rem;
-  
-  @include responsive(md) {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-}
-
-.copyright {
-  p {
-    margin: 0;
-    color: rgba($footer-text, 0.7);
-    font-size: 0.9rem;
-
-    @include responsive(sm) {
-      font-size: 0.8rem;
-    }
-  }
-}
-
-.scroll-to-top {
-  background: $footer-accent;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba($footer-accent, 0.3);
-  
-  i {
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover {
-    background: color.adjust($footer-accent, $lightness: -10%);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 8px 30px rgba($footer-accent, 0.4);
-    
-    i {
+      background: $blue;
+      border-color: $blue;
+      color: $white;
       transform: translateY(-2px);
     }
   }
+}
 
-  &:active {
-    transform: scale(0.95);
-  }
-
-  @include responsive(md) {
-    position: relative;
-    transform: none;
-    margin: 0 auto;
-    width: 45px;
-    height: 45px;
-    
-    i {
-      font-size: 1.1rem;
-    }
-    
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  @include responsive(sm) {
-    width: 40px;
-    height: 40px;
-    
-    i {
-      font-size: 1rem;
-    }
+// ─── Link columns ────────────────────────────────────────────────
+.footer-links,
+.footer-contact,
+.footer-newsletter {
+  .links-title,
+  .contact-title,
+  .newsletter-title {
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: $white;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.1rem;
   }
 }
 
-// Animations
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+// ─── Links ───────────────────────────────────────────────────────
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li { margin-bottom: 0.5rem; }
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.84rem;
+  color: $text-muted;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  i { font-size: 0.72rem; opacity: 0.6; }
+
+  &:hover {
+    color: $white;
+
+    i { opacity: 1; color: $blue; }
   }
 }
 
-.footer-main .row > div {
-  animation: fadeInUp 0.6s ease forwards;
-  
-  @for $i from 1 through 4 {
-    &:nth-child(#{$i}) {
-      animation-delay: #{$i * 0.1}s;
+// ─── Contact info ────────────────────────────────────────────────
+.contact-info {
+  .contact-item {
+    display: flex;
+    gap: 0.65rem;
+    margin-bottom: 0.8rem;
+
+    &:last-child { margin-bottom: 0; }
+
+    .contact-icon {
+      color: $blue;
+      font-size: 0.85rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+      width: 16px;
+      text-align: center;
     }
-  }
-}
 
-// Responsive supplémentaires
-@include responsive(lg) {
-  .footer-main .row > div {
-    animation-delay: 0s !important;
-  }
-}
-
-// Support des préférences de mouvement réduit
-@media (prefers-reduced-motion: reduce) {
-  .footer-main .row > div {
-    animation: none;
-  }
-  
-  .footer-link::before,
-  .social-link::before {
-    display: none;
-  }
-}
-
-// Support du dark mode
-@media (prefers-color-scheme: dark) {
-  .footer {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  }
-}
-
-// Support de l'impression
-@media print {
-  .footer {
-    background: white !important;
-    color: black !important;
-    
-    .footer-main {
-      padding: 20px 0;
+    .contact-label {
+      display: block;
+      font-size: 0.68rem;
+      color: $text-muted;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.1rem;
     }
-    
-    .social-link,
-    .newsletter-form,
-    .scroll-to-top {
-      display: none !important;
-    }
-    
-    .footer-bottom {
-      border-top: 1px solid #ddd;
+
+    .contact-value {
+      font-size: 0.84rem;
+      color: $text;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      word-break: break-word;
+
+      &:hover { color: $blue; }
     }
   }
 }
 
-// Améliorations d'accessibilité
+// ─── Newsletter ──────────────────────────────────────────────────
+.newsletter-description {
+  font-size: 0.84rem;
+  color: $text-muted;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.newsletter-form {
+  display: flex;
+  border-radius: 9px;
+  overflow: hidden;
+  border: 1px solid $border;
+  background: rgba($white, 0.04);
+  transition: border-color 0.2s ease;
+
+  &:focus-within {
+    border-color: rgba($blue, 0.5);
+    box-shadow: 0 0 0 3px rgba($blue, 0.1);
+  }
+
+  .newsletter-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.65rem 0.9rem;
+    color: $white;
+    font-size: 0.84rem;
+    outline: none;
+    min-width: 0;
+
+    &::placeholder { color: $text-muted; }
+  }
+
+  .newsletter-btn {
+    background: $blue;
+    border: none;
+    padding: 0.65rem 0.9rem;
+    color: $white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    i { font-size: 0.9rem; }
+
+    &:hover { background: color.adjust($blue, $lightness: -8%); }
+  }
+}
+
+// ─── Footer bottom ───────────────────────────────────────────────
+.footer-bottom {
+  border-top: 1px solid $border;
+  padding: 1.5rem 0;
+
+  @media (max-width: 576px) { padding: 1.25rem 0; }
+}
+
+.footer-bottom-content {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  .container & {
+    padding: 0;
+    max-width: none;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+}
+
+.copyright p {
+  font-size: 0.8rem;
+  color: $text-muted;
+  margin: 0;
+}
+
+// ─── Scroll to top ───────────────────────────────────────────────
+.scroll-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: rgba($white, 0.06);
+  border: 1px solid $border;
+  color: $text-muted;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+
+  i { font-size: 0.85rem; }
+
+  &:hover {
+    background: $blue;
+    border-color: $blue;
+    color: $white;
+    transform: translateY(-2px);
+  }
+}
+
+// ─── Accessibility ───────────────────────────────────────────────
 .footer-link:focus-visible,
 .social-link:focus-visible,
 .newsletter-btn:focus-visible,
 .scroll-to-top:focus-visible {
-  outline: 2px solid $footer-accent;
+  outline: 2px solid $blue;
   outline-offset: 2px;
-}
-
-.newsletter-input:focus-visible {
-  outline: none;
 }

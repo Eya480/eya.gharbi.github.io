@@ -76,29 +76,15 @@ export class Hero implements OnInit {
   }
 
   scrollTo(section: string): void {
-    if (this.router.url === '/' || this.router.url === '/home') {
-      const element = document.getElementById(section);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    } else {
-      this.router.navigate(['/home']).then(() => {
-        setTimeout(() => {
-          const element = document.getElementById(section);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
-      });
-    }
+    // Les sections sont des routes séparées — on navigue vers la route
+    this.router.navigate(['/' + section]).then(() => {
+      // Scroll vers le haut après navigation
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
-    const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.hero-section');
-    if (parallax) {
-      (parallax as HTMLElement).style.transform = `translateY(${scrolled * 0.5}px)`;
-    }
+    // parallax désactivé — évite le déplacement de la section
   }
 }
