@@ -12,27 +12,27 @@ import { CommonModule } from '@angular/common';
 })
 export class Skills implements OnInit {
   skills$!: Observable<Skill[]>;
-  categories = ['frontend', 'backend', 'database', 'mobile', 'tools'];
+  categories = ['frontend', 'backend', 'database', 'mobile', 'tools', 'ai'];
   softSkills = [
-    { 
-      name: 'Gestion de Projet', 
-      icon: 'fas fa-tasks', 
-      description: 'Planification et suivi de projets' 
+    {
+      name: 'Gestion de Projet',
+      icon: 'fas fa-tasks',
+      description: 'Planification et suivi de projets'
     },
-    { 
-      name: 'Formation', 
-      icon: 'fas fa-chalkboard-teacher', 
-      description: 'Animation et encadrement' 
+    {
+      name: 'Formation',
+      icon: 'fas fa-chalkboard-teacher',
+      description: 'Animation et encadrement'
     },
-    { 
-      name: 'Communication', 
-      icon: 'fas fa-comments', 
-      description: 'Échange efficace en équipe' 
+    {
+      name: 'Communication',
+      icon: 'fas fa-comments',
+      description: 'Échange efficace en équipe'
     },
-    { 
-      name: 'Résolution de problèmes', 
-      icon: 'fas fa-puzzle-piece', 
-      description: 'Analyse et solutions innovantes' 
+    {
+      name: 'Résolution de problèmes',
+      icon: 'fas fa-puzzle-piece',
+      description: 'Analyse et solutions innovantes'
     }
   ];
 
@@ -53,7 +53,8 @@ export class Skills implements OnInit {
       backend: 'Backend',
       database: 'Bases de données',
       mobile: 'Mobile',
-      tools: 'Outils & Méthodologies'
+      tools: 'Outils & Méthodologies',
+      ai: 'Intelligence Artificielle'
     };
     return titles[category] || category;
   }
@@ -64,7 +65,8 @@ export class Skills implements OnInit {
       backend: 'fas fa-server',
       database: 'fas fa-database',
       mobile: 'fas fa-mobile-alt',
-      tools: 'fas fa-tools'
+      tools: 'fas fa-tools',
+      ai: 'fas fa-brain'
     };
     return icons[category] || 'fas fa-star';
   }
@@ -75,7 +77,8 @@ export class Skills implements OnInit {
       backend: 'progress-bar-backend',
       database: 'progress-bar-database',
       mobile: 'progress-bar-mobile',
-      tools: 'progress-bar-tools'
+      tools: 'progress-bar-tools',
+      ai: 'progress-bar-ai'
     };
     return classes[category] || 'progress-bar-primary';
   }

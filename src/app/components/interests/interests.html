@@ -1,0 +1,31 @@
+<section id="interests" class="interests-section section-padding">
+  <div class="container">
+
+    <header class="section-header text-center mb-5">
+      <span class="section-eyebrow">
+        <i class="fas fa-heart me-1"></i>
+        Ce qui me passionne
+      </span>
+      <h2 class="section-title">Centres d'Intérêt</h2>
+      <p class="section-subtitle">Au-delà du code — ce qui guide mes choix technologiques</p>
+      <div class="section-divider"></div>
+    </header>
+
+    <div class="interests-grid">
+      @for (interest of interests; track interest.title) {
+        <article class="interest-card" [style.--accent]="interest.color">
+          <div class="interest-icon-wrapper">
+            <i [class]="interest.icon + ' interest-icon'"></i>
+          </div>
+          <h3 class="interest-title">{{ interest.title }}</h3>
+          <p class="interest-description">{{ interest.description }}</p>
+          <div class="interest-anecdote">
+            <i class="fas fa-quote-left anecdote-icon"></i>
+            <span>{{ interest.anecdote }}</span>
+          </div>
+        </article>
+      }
+    </div>
+
+  </div>
+</section>

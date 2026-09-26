@@ -9,14 +9,14 @@ import { Router, RouterLink } from '@angular/router';
   styleUrls: ['./hero.scss'],
 })
 export class Hero implements OnInit {
-  title = 'Développeuse Full Stack';
-  subtitle = 'Passionnée par les technologies modernes et innovantes';
+  title = 'Ingénieure Logiciel · Développeuse Full Stack';
+  subtitle = 'Angular · NestJS · Next.js · IA';
   typedText = '';
   private phrases = [
-    'Développeuse Full Stack passionnée par l\'innovation',
-    'Diplômée ISET Radès — Licence en Systèmes d\'Information',
-    'NestJS · Next.js · IA · Architecture logicielle',
-    'Ouverte aux nouvelles opportunités professionnelles',
+    'Angular · NestJS · Next.js',
+    'Ingénieure @ ISAMM · Diplômée ISET Radès',
+    'IA appliquée · Architecture logicielle',
+    'Ouverte aux opportunités full-time',
   ];
   private currentPhraseIndex = 0;
   private currentCharIndex = 0;
@@ -76,15 +76,13 @@ export class Hero implements OnInit {
   }
 
   scrollTo(section: string): void {
-    // Les sections sont des routes séparées — on navigue vers la route
     this.router.navigate(['/' + section]).then(() => {
-      // Scroll vers le haut après navigation
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {
-    // parallax désactivé — évite le déplacement de la section
+    // parallax désactivé
   }
 }

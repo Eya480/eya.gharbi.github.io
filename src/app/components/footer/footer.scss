@@ -1,13 +1,12 @@
-@use "sass:color";
-
 // ─── Tokens ──────────────────────────────────────────────────────
 $navy:       #0f172a;
+$slate:      #1e293b;
 $blue:       #3b82f6;
 $violet:     #8b5cf6;
 $white:      #ffffff;
-$border:     rgba(255,255,255,0.08);
-$text:       rgba(255,255,255,0.8);
-$text-muted: rgba(255,255,255,0.45);
+$border:     rgba(255, 255, 255, 0.08);
+$text:       rgba(255, 255, 255, 0.8);
+$text-muted: rgba(255, 255, 255, 0.45);
 
 $font-heading: 'Space Grotesk', 'Inter', sans-serif;
 
@@ -16,277 +15,75 @@ $font-heading: 'Space Grotesk', 'Inter', sans-serif;
   background: $navy;
   color: $text;
   position: relative;
-  overflow: hidden;
 
-  // Subtle top accent line
   &::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba($blue, 0.5), rgba($violet, 0.5), transparent);
+    height: 2px;
+    background: linear-gradient(90deg, $blue, $violet);
   }
 }
 
-// ─── Main section ────────────────────────────────────────────────
+// ─── Main ────────────────────────────────────────────────────────
 .footer-main {
-  padding: 3.5rem 0 2rem;
-
-  @media (max-width: 768px) { padding: 2.5rem 0 1.5rem; }
-
-  .container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  padding: 3.5rem 0 2.5rem;
 }
 
-// Row/col layout (uses Bootstrap from HTML)
-.row.g-4 > [class*="col-"] {
-  padding: 0 0.75rem;
-  margin-bottom: 1.5rem;
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 576px) { padding: 0 1.25rem; }
 }
 
-// ─── Brand block ─────────────────────────────────────────────────
-.footer-brand {
-  .brand-text {
-    font-family: $font-heading;
-    font-size: 1.3rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #fff, $blue);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.9rem;
-    display: block;
-    letter-spacing: -0.02em;
-  }
+// ─── Grid 3 colonnes ─────────────────────────────────────────────
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr;
+  gap: 3rem;
 
-  .footer-description {
-    font-size: 0.84rem;
-    color: $text-muted;
-    line-height: 1.65;
-    margin-bottom: 1.4rem;
-    max-width: 260px;
-  }
+  @media (max-width: 900px) { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 576px) { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-// ─── Social links ────────────────────────────────────────────────
+// ─── Brand ───────────────────────────────────────────────────────
+.brand-text {
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $white;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.footer-description {
+  font-size: 0.875rem;
+  color: $text-muted;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  max-width: 300px;
+}
+
 .social-links {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap;
-
-  .social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: rgba($white, 0.06);
-    border: 1px solid $border;
-    color: $text-muted;
-    text-decoration: none;
-    transition: all 0.2s ease;
-
-    i { font-size: 0.9rem; }
-
-    &:hover {
-      background: $blue;
-      border-color: $blue;
-      color: $white;
-      transform: translateY(-2px);
-    }
-  }
 }
 
-// ─── Link columns ────────────────────────────────────────────────
-.footer-links,
-.footer-contact,
-.footer-newsletter {
-  .links-title,
-  .contact-title,
-  .newsletter-title {
-    font-family: $font-heading;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: $white;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.1rem;
-  }
-}
-
-// ─── Links ───────────────────────────────────────────────────────
-.links-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-
-  li { margin-bottom: 0.5rem; }
-}
-
-.footer-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.84rem;
-  color: $text-muted;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-
-  i { font-size: 0.72rem; opacity: 0.6; }
-
-  &:hover {
-    color: $white;
-
-    i { opacity: 1; color: $blue; }
-  }
-}
-
-// ─── Contact info ────────────────────────────────────────────────
-.contact-info {
-  .contact-item {
-    display: flex;
-    gap: 0.65rem;
-    margin-bottom: 0.8rem;
-
-    &:last-child { margin-bottom: 0; }
-
-    .contact-icon {
-      color: $blue;
-      font-size: 0.85rem;
-      margin-top: 2px;
-      flex-shrink: 0;
-      width: 16px;
-      text-align: center;
-    }
-
-    .contact-label {
-      display: block;
-      font-size: 0.68rem;
-      color: $text-muted;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.1rem;
-    }
-
-    .contact-value {
-      font-size: 0.84rem;
-      color: $text;
-      text-decoration: none;
-      transition: color 0.2s ease;
-      word-break: break-word;
-
-      &:hover { color: $blue; }
-    }
-  }
-}
-
-// ─── Newsletter ──────────────────────────────────────────────────
-.newsletter-description {
-  font-size: 0.84rem;
-  color: $text-muted;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.newsletter-form {
-  display: flex;
-  border-radius: 9px;
-  overflow: hidden;
-  border: 1px solid $border;
-  background: rgba($white, 0.04);
-  transition: border-color 0.2s ease;
-
-  &:focus-within {
-    border-color: rgba($blue, 0.5);
-    box-shadow: 0 0 0 3px rgba($blue, 0.1);
-  }
-
-  .newsletter-input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 0.65rem 0.9rem;
-    color: $white;
-    font-size: 0.84rem;
-    outline: none;
-    min-width: 0;
-
-    &::placeholder { color: $text-muted; }
-  }
-
-  .newsletter-btn {
-    background: $blue;
-    border: none;
-    padding: 0.65rem 0.9rem;
-    color: $white;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-
-    i { font-size: 0.9rem; }
-
-    &:hover { background: color.adjust($blue, $lightness: -8%); }
-  }
-}
-
-// ─── Footer bottom ───────────────────────────────────────────────
-.footer-bottom {
-  border-top: 1px solid $border;
-  padding: 1.5rem 0;
-
-  @media (max-width: 576px) { padding: 1.25rem 0; }
-}
-
-.footer-bottom-content {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-
-  .container & {
-    padding: 0;
-    max-width: none;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.75rem;
-  }
-}
-
-.copyright p {
-  font-size: 0.8rem;
-  color: $text-muted;
-  margin: 0;
-}
-
-// ─── Scroll to top ───────────────────────────────────────────────
-.scroll-to-top {
+.social-link {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: 9px;
+  border-radius: 8px;
   background: rgba($white, 0.06);
   border: 1px solid $border;
-  color: $text-muted;
-  cursor: pointer;
+  color: rgba($white, 0.65);
+  text-decoration: none;
+  font-size: 0.875rem;
   transition: all 0.2s ease;
-  flex-shrink: 0;
-
-  i { font-size: 0.85rem; }
 
   &:hover {
     background: $blue;
@@ -296,11 +93,115 @@ $font-heading: 'Space Grotesk', 'Inter', sans-serif;
   }
 }
 
-// ─── Accessibility ───────────────────────────────────────────────
-.footer-link:focus-visible,
-.social-link:focus-visible,
-.newsletter-btn:focus-visible,
-.scroll-to-top:focus-visible {
-  outline: 2px solid $blue;
-  outline-offset: 2px;
+// ─── Nav & Contact titres ────────────────────────────────────────
+.footer-col-title {
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba($white, 0.5);
+  margin-bottom: 1.1rem;
+}
+
+// ─── Quick links ─────────────────────────────────────────────────
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: $text-muted;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  text-decoration: none;
+
+  i { font-size: 0.72rem; opacity: 0.7; }
+
+  &:hover { color: $white; }
+}
+
+// ─── Contact info ────────────────────────────────────────────────
+.contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  color: $text-muted;
+
+  i {
+    font-size: 0.8rem;
+    color: $blue;
+    flex-shrink: 0;
+    width: 14px;
+    text-align: center;
+  }
+
+  .availability-dot {
+    color: #10b981;
+    font-size: 0.5rem;
+  }
+
+  a {
+    color: $text-muted;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    word-break: break-all;
+
+    &:hover { color: $white; }
+  }
+}
+
+// ─── Bottom bar ──────────────────────────────────────────────────
+.footer-bottom {
+  border-top: 1px solid $border;
+  padding: 1.25rem 0;
+}
+
+.footer-bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: $text-muted;
+  margin: 0;
+}
+
+.scroll-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid $border;
+  background: rgba($white, 0.05);
+  color: rgba($white, 0.55);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+
+  &:hover {
+    background: $blue;
+    border-color: $blue;
+    color: $white;
+  }
 }

@@ -25,15 +25,15 @@ export class Contact implements OnInit {
     {
       icon: 'fas fa-envelope',
       title: 'Email',
-      value: 'eyaelgharbi889@gmail.com',
-      link: 'mailto:eyaelgharbi889@gmail.com',
+      value: 'eya.elgharbi.pro@gmail.com',
+      link: 'mailto:eya.elgharbi.pro@gmail.com',
       description: 'Envoyez-moi un email à tout moment'
     },
     {
       icon: 'fas fa-phone',
       title: 'Téléphone',
-      value: '00 26 087 318',
-      link: 'tel:00 26 087 31',
+      value: '+216 26 087 318',
+      link: 'tel:+21626087318',
       description: 'Appelez-moi du lundi au vendredi'
     },
     {
@@ -144,8 +144,8 @@ export class Contact implements OnInit {
   downloadCV(): void {
     // Simuler le téléchargement du CV
     const link = document.createElement('a');
-    link.href = 'assets/cv.pdf';
-    link.download = 'cv.pdf';
+    link.href = 'assets/cv_EyaGHARBI.pdf';
+    link.download = 'CV_EyaGHARBI.pdf';
     link.click();
   }
 }

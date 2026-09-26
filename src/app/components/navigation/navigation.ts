@@ -14,11 +14,13 @@ export class Navigation implements OnInit {
   currentSection = 'home';
 
   navItems = [
-    { id: 'home', label: 'Accueil', icon: 'fas fa-home', path: '/home' },
-    { id: 'about', label: 'À propos', icon: 'fas fa-user', path: '/about' },
-    { id: 'skills', label: 'Compétences', icon: 'fas fa-code', path: '/skills' },
-    { id: 'projects', label: 'Projets', icon: 'fas fa-briefcase', path: '/projects' },
-    { id: 'contact', label: 'Contact', icon: 'fas fa-envelope', path: '/contact' }
+    { id: 'home',         label: 'Accueil',       icon: 'fas fa-home',        path: '/home' },
+    { id: 'about',        label: 'À propos',      icon: 'fas fa-user',        path: '/about' },
+    { id: 'skills',       label: 'Compétences',   icon: 'fas fa-code',        path: '/skills' },
+    { id: 'projects',     label: 'Projets',        icon: 'fas fa-briefcase',   path: '/projects' },
+    { id: 'interests',    label: 'Intérêts',       icon: 'fas fa-heart',       path: '/interests' },
+    // { id: 'testimonials', label: 'Témoignages', icon: 'fas fa-quote-left',  path: '/testimonials' },
+    { id: 'contact',      label: 'Contact',        icon: 'fas fa-envelope',    path: '/contact' }
   ];
 
   constructor(private router: Router) {}
@@ -97,18 +99,13 @@ export class Navigation implements OnInit {
 
   private updateActiveSectionFromUrl(): void {
     const url = this.router.url;
-    
-    if (url === '/' || url === '/home') {
-      this.currentSection = 'home';
-    } else if (url.includes('about')) {
-      this.currentSection = 'about';
-    } else if (url.includes('skills')) {
-      this.currentSection = 'skills';
-    } else if (url.includes('projects')) {
-      this.currentSection = 'projects';
-    } else if (url.includes('contact')) {
-      this.currentSection = 'contact';
-    }
+    if (url === '/' || url.includes('home'))               this.currentSection = 'home';
+    else if (url.includes('about'))                        this.currentSection = 'about';
+    else if (url.includes('skills'))                       this.currentSection = 'skills';
+    else if (url.includes('projects'))                     this.currentSection = 'projects';
+    else if (url.includes('interests'))                    this.currentSection = 'interests';
+    else if (url.includes('testimonials'))                 this.currentSection = 'testimonials';
+    else if (url.includes('contact'))                      this.currentSection = 'contact';
   }
 
   isActive(section: string): boolean {

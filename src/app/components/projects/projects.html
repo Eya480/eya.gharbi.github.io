@@ -95,9 +95,10 @@
                   </div>
                   
                   <div class="project-actions">
-                    <a 
-                      [href]="project.githubUrl" 
-                      target="_blank" 
+                    <a
+                      *ngIf="project.githubUrl && project.githubUrl.trim()"
+                      [href]="project.githubUrl"
+                      target="_blank"
                       class="btn btn-outline-dark btn-sm me-2"
                       rel="noopener noreferrer">
                       <i class="fab fa-github me-1"></i>
@@ -132,7 +133,7 @@
       <div class="row g-4">
         <div 
           class="col-xl-4 col-lg-6" 
-          *ngFor="let project of filteredProjects">
+          *ngFor="let project of pagedProjects">
           
           <div class="project-card" [class.featured]="project.featured">
             <div class="project-card-header">
@@ -186,9 +187,10 @@
               </div>
               
               <div class="project-actions">
-                <a 
-                  [href]="project.githubUrl" 
-                  target="_blank" 
+                <a
+                  *ngIf="project.githubUrl && project.githubUrl.trim()"
+                  [href]="project.githubUrl"
+                  target="_blank"
                   class="btn-icon"
                   [attr.aria-label]="'Code source de ' + project.title"
                   rel="noopener noreferrer">
@@ -220,6 +222,39 @@
         <i class="fas fa-search no-results-icon mb-3"></i>
         <h4>Aucun projet trouvé</h4>
         <p class="text-muted">Essayez de modifier vos critères de recherche ou de filtre</p>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-controls" *ngIf="totalPages > 1">
+        <button
+          class="page-btn"
+          (click)="goToPage(currentPage - 1)"
+          [disabled]="currentPage === 1"
+          aria-label="Page précédente">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <button
+          *ngFor="let page of getPages()"
+          class="page-btn"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)"
+          [attr.aria-label]="'Page ' + page">
+          {{ page }}
+        </button>
+
+        <button
+          class="page-btn"
+          (click)="goToPage(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+          aria-label="Page suivante">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <span class="page-info">
+          Page {{ currentPage }} / {{ totalPages }}
+          &nbsp;·&nbsp; {{ filteredProjects.length }} projets
+        </span>
       </div>
     </div>
   </div>
@@ -309,9 +344,10 @@
       </div>
       
       <div class="modal-footer">
-        <a 
-          [href]="selectedProject.githubUrl" 
-          target="_blank" 
+        <a
+          *ngIf="selectedProject.githubUrl && selectedProject.githubUrl.trim()"
+          [href]="selectedProject.githubUrl"
+          target="_blank"
           class="btn btn-dark"
           rel="noopener noreferrer">
           <i class="fab fa-github me-2"></i>

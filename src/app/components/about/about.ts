@@ -26,33 +26,27 @@ interface Stat {
 })
 export class About implements OnInit {
 
+  activeSection: 'bio' | 'work' | 'education' = 'bio';
+
+  setSection(section: 'bio' | 'work' | 'education'): void {
+    this.activeSection = section;
+  }
+
   stats: Stat[] = [
-    // ✅ 12 projets (11 existants + SolidMaint)
-    { icon: 'fas fa-project-diagram', value: '12+', label: 'Projets Réalisés' },
-    // ✅ Technologies réelles comptées dans skills
+    { icon: 'fas fa-project-diagram', value: '11+', label: 'Projets Réalisés' },
     { icon: 'fas fa-code', value: '20+', label: 'Technologies Maîtrisées' },
-    // ✅ Diplôme obtenu — PFE terminé juin 2026
     { icon: 'fas fa-graduation-cap', value: '1', label: 'Diplôme Obtenu' },
-    // ✅ Stages réels : CNI + STEG + SolidWall
     { icon: 'fas fa-briefcase', value: '3', label: 'Stages Professionnels' }
   ];
 
   experiences: Experience[] = [
-
-    // ==================== WORK ====================
-
     {
       id: 1,
       title: 'Stagiaire Développeur Full Stack — PFE',
       company: 'SolidWall Consulting, Ben Arous',
       period: 'Fév 2026 - Mai 2026',
-      description: 'Conception et réalisation en binôme de SolidMaint, une plateforme B2B intelligente de gestion des contrats de maintenance. Intégration d\'un module IA complet basé sur LLaMA 3.3 70B via Groq Cloud : classification automatique des demandes, analyse des blocages et génération d\'articles de base de connaissances. Pipeline de robustesse : anonymisation PII, cache MD5, retry avec backoff exponentiel, rate limiting et traçabilité complète. Authentification RBAC avec JWT et OAuth Google/GitHub, gestion SLA, messagerie temps réel WebSocket, notifications multicanaux et génération de rapports PDF.',
-      technologies: [
-        'Next.js', 'NestJS', 'TypeScript', 'PostgreSQL',
-        'Redis', 'Docker', 'Prisma', 'LLaMA 3.3 70B',
-        'Groq Cloud', 'WebSocket', 'Tailwind CSS', 'shadcn/ui',
-        'Vitest', 'Playwright', 'Grafana k6', 'OWASP ZAP'
-      ],
+      description: 'Conception et réalisation en binôme de SolidMaint, une plateforme B2B intelligente de gestion des contrats de maintenance. Module IA basé sur LLaMA 3.3 70B via Groq Cloud, authentification RBAC, messagerie WebSocket, génération de rapports PDF.',
+      technologies: ['Next.js', 'NestJS', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker', 'Prisma', 'LLaMA 3.3 70B', 'Groq Cloud', 'WebSocket', 'Tailwind CSS', 'Vitest', 'Playwright'],
       type: 'work'
     },
     {
@@ -60,7 +54,7 @@ export class About implements OnInit {
       title: 'Stagiaire Développeur Full Stack',
       company: 'Centre National de l\'Informatique (CNI)',
       period: 'Jan 2025 - Fév 2025',
-      description: 'Développement full-stack d\'une application de gestion des congés avec Angular et Spring Boot. Création d\'API RESTful, interface responsive et sécurisation avec JWT.',
+      description: 'Développement d\'une application de gestion des congés avec Angular et Spring Boot, API RESTful et sécurisation JWT.',
       technologies: ['Angular', 'Spring Boot', 'MySQL', 'JPA/Hibernate', 'JWT'],
       type: 'work'
     },
@@ -69,7 +63,7 @@ export class About implements OnInit {
       title: 'Formatrice en Gestion de Projet',
       company: 'USAID, Ma3an — Programme YLN',
       period: 'Juil 2024 - Nov 2024',
-      description: 'Encadrement de participants pour l\'élaboration de plans de projet concrets et animation de formations en gestion de projet.',
+      description: 'Animation de formations en gestion de projet et encadrement de participants pour l\'élaboration de plans concrets.',
       technologies: ['Gestion de Projet', 'Formation', 'Animation'],
       type: 'work'
     },
@@ -82,21 +76,22 @@ export class About implements OnInit {
       technologies: ['Support Technique', 'Windows', 'Systèmes d\'Exploitation'],
       type: 'work'
     },
-
-    // ==================== EDUCATION ====================
-
+    {
+      id: 7,
+      title: 'Cycle Ingénieur — Génie Logiciel & Intelligence Artificielle',
+      company: 'ISAMM — Institut Supérieur des Arts Multimédias de la Manouba',
+      period: 'Sept 2026 - En cours',
+      description: 'Première année du cycle ingénieur, approfondissement en ingénierie logicielle, intelligence artificielle et systèmes distribués.',
+      technologies: ['Intelligence Artificielle', 'Génie Logiciel', 'Architecture Logicielle', 'Systèmes Distribués', 'Machine Learning'],
+      type: 'education'
+    },
     {
       id: 5,
       title: 'Licence Nationale en Technologies de l\'Informatique',
       company: 'ISET Radès — Spécialité : Développement des Systèmes d\'Information',
       period: '2023 - 2026',
-      // ✅ Diplômée juin 2026
-      description: 'Formation complète en développement des systèmes d\'information, technologies web et mobiles. Projet de Fin d\'Études : SolidMaint — plateforme B2B de gestion de maintenance avec IA intégrée, réalisé chez SolidWall Consulting. Diplômée avec mention.',
-      technologies: [
-        'Java', 'Angular', 'Spring Boot', 'NestJS',
-        'Next.js', 'Python', 'Bases de données', 'Réseaux',
-        'UML', 'Agile Scrum'
-      ],
+      description: 'Formation en développement des systèmes d\'information, web et mobile. PFE : SolidMaint — plateforme B2B avec IA intégrée chez SolidWall Consulting. Diplômée avec mention.',
+      technologies: ['Java', 'Angular', 'Spring Boot', 'NestJS', 'Next.js', 'Python', 'Bases de données', 'UML', 'Agile Scrum'],
       type: 'education'
     },
     {
@@ -110,16 +105,17 @@ export class About implements OnInit {
     }
   ];
 
+  get workExperiences(): Experience[] {
+    return this.experiences.filter(e => e.type === 'work');
+  }
+
+  get educationExperiences(): Experience[] {
+    return this.experiences.filter(e => e.type === 'education');
+  }
+
   ngOnInit(): void {}
 
   getExperienceIcon(type: string): string {
     return type === 'work' ? 'fas fa-briefcase' : 'fas fa-graduation-cap';
-  }
-
-  scrollTo(section: string): void {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
   }
 }

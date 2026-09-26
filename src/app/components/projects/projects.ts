@@ -14,10 +14,16 @@ import { Portfolio } from '../../services/portfolio';
 export class Projects implements OnInit, OnDestroy {
   projects$!: Observable<Project[]>;
   filteredProjects: Project[] = [];
+  pagedProjects: Project[] = [];
   categories: string[] = [];
   selectedCategory: string = 'all';
   searchTerm: string = '';
   selectedProject: Project | null = null;
+
+  // Pagination
+  currentPage = 1;
+  pageSize = 6;
+  totalPages = 1;
 
   private destroy$ = new Subject<void>();
 
@@ -39,6 +45,7 @@ export class Projects implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(projects => {
         this.filteredProjects = projects;
+        this.applyPagination();
       });
   }
 
@@ -52,18 +59,17 @@ export class Projects implements OnInit, OnDestroy {
 
   filterProjects(category: string = this.selectedCategory): void {
     this.selectedCategory = category;
-    
+    this.currentPage = 1;
+
     this.projects$
       .pipe(takeUntil(this.destroy$))
       .subscribe(projects => {
         let filtered = projects;
 
-        // Filtre par catégorie
         if (category !== 'all') {
           filtered = filtered.filter(project => project.category === category);
         }
 
-        // Filtre par recherche
         if (this.searchTerm.trim()) {
           const term = this.searchTerm.toLowerCase();
           filtered = filtered.filter(project =>
@@ -74,10 +80,29 @@ export class Projects implements OnInit, OnDestroy {
         }
 
         this.filteredProjects = filtered;
+        this.applyPagination();
       });
   }
 
+  private applyPagination(): void {
+    this.totalPages = Math.ceil(this.filteredProjects.length / this.pageSize);
+    const start = (this.currentPage - 1) * this.pageSize;
+    this.pagedProjects = this.filteredProjects.slice(start, start + this.pageSize);
+  }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages) return;
+    this.currentPage = page;
+    this.applyPagination();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  getPages(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
   onSearchChange(): void {
+    this.currentPage = 1;
     this.filterProjects();
   }
 

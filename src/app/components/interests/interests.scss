@@ -1,0 +1,137 @@
+$navy:   #0f172a;
+$blue:   #3b82f6;
+$violet: #8b5cf6;
+$white:  #ffffff;
+$text:   #1e293b;
+$muted:  #64748b;
+$border: #e2e8f0;
+$bg:     #f8fafc;
+
+.interests-section {
+  background: $bg;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $blue;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: $navy;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: $muted;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.section-divider {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, $blue, $violet);
+  border-radius: 2px;
+  margin: 1rem auto 0;
+}
+
+// ─── Grid ────────────────────────────────────────────────────────
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+// ─── Card ────────────────────────────────────────────────────────
+.interest-card {
+  background: $white;
+  border: 1px solid $border;
+  border-radius: 16px;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
+    border-color: var(--accent);
+
+    .interest-icon-wrapper {
+      background: var(--accent);
+      .interest-icon { color: $white; }
+    }
+  }
+}
+
+.interest-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  transition: background 0.25s ease;
+}
+
+.interest-icon {
+  font-size: 1.35rem;
+  color: var(--accent);
+  transition: color 0.25s ease;
+}
+
+.interest-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $navy;
+  margin-bottom: 0.5rem;
+}
+
+.interest-description {
+  font-size: 0.875rem;
+  color: $muted;
+  line-height: 1.65;
+  margin: 0 0 0.85rem;
+}
+
+// ─── Anecdote concrète ───────────────────────────────────────────
+.interest-anecdote {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 0.6rem 0.75rem;
+  margin-top: auto;
+
+  .anecdote-icon {
+    font-size: 0.65rem;
+    color: var(--accent);
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  span {
+    font-size: 0.78rem;
+    color: $text;
+    line-height: 1.55;
+    font-style: italic;
+  }
+}
