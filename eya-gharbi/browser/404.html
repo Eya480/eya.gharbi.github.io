@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MonPortfolio</title>
+  <script>
+    // GitHub Pages SPA redirect
+    // Saves the full URL to sessionStorage, then redirects to the base index.html
+    var repo = '/eya.gharbi.github.io';
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      repo + '/?p=' + encodeURIComponent(
+        l.pathname.slice(repo.length) + l.search
+      ) + '&h=' + encodeURIComponent(l.hash)
+    );
+  </script>
+</head>
+<body></body>
+</html>
